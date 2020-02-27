@@ -3,8 +3,6 @@ import Round from '../Round/Round';
 import { connect } from 'react-redux';
 import './RoundContainer.css';
 
-
-
 class RoundContainer extends Component {
   constructor(props) {
     super(props);
@@ -12,11 +10,15 @@ class RoundContainer extends Component {
 
   render() {
 
-    return (
+    let round = this.props.triviaData.map(card => {
+      return <Round question={card.question} />
+    })
 
-      <Round
-        
-      />
+    return (
+      <div>
+        {round}
+      </div>
+
     )
 
   }
