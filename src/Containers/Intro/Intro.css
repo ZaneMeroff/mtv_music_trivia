@@ -1,3 +1,8 @@
+* {
+  font-family: Fredoka One;
+  font-weight: lighter;
+}
+
 #temp-logo {
   font-size: 300%;
 }
@@ -14,19 +19,31 @@
 #start-game-button,
 #name-input {
   width: 500px;
-  height: 70px;
+  height: 100px;
   padding-left: 5%;
   font-size: 200%;
-  margin: 2%;
-  border-radius: 10px;
+  margin: 2% 0% 2% 0%;
+  border-radius: 50px;
   text-align: center;
 }
 
+#name-input {
+  padding: 0%;
+  width: 520px;
+}
+
 #difficulty-dropbox {
-  width: 540px;
+  width: 527px;
 }
 
 #start-game-button {
-  width: 535px;
+  width: 527px;
   background-color: #fff200;
+  padding: 0%;
+  border: none;
+}
+
+#start-game-button:hover,
+#difficulty-dropbox:hover {
+  cursor: pointer;
 }
