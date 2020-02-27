@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchTriviaData } from '../../apiCalls';
 import { connect } from 'react-redux';
-import { getTriviaData } from '../../actions';
+import { saveTriviaData, saveUserName } from '../../actions';
 import './Intro.css'
 import logo from '../../assets/mtv_logo_yellow.png';
 
@@ -16,17 +16,26 @@ class Intro extends Component {
     }
   }
 
+  startGame = () => {
+    this.storeUserName(this.state.name);
+    this.getTriviaData();
+  }
+
   getTriviaData = () => {
     fetchTriviaData(this.state.difficultyDropBox)
-      .then(triviaData => this.props.addTriviaDataToStore(triviaData.results))
+      .then(triviaData => this.props.saveTriviaDataToStore(triviaData.results))
+  }
+
+  storeUserName = name => {
+    this.props.saveUserNameToStore(name);
   }
 
   updateDropBoxState = difficulty => {
-    this.setState({difficultyDropBox: difficulty})
+    this.setState({difficultyDropBox: difficulty});
   }
 
   updateState = e => {
-    this.setState( {[e.target.name]: e.target.value} )
+    this.setState( {[e.target.name]: e.target.value} );
   }
 
   render() {
@@ -48,7 +57,7 @@ class Intro extends Component {
           <option value='medium'>MEDIUM</option>
           <option value='hard'>HARD</option>
         </select>
-        <Link to={'/round'}><button id='start-game-button' onClick={this.getTriviaData}>START GAME</button></Link>
+        <Link to={'/round'}><button id='start-game-button' onClick={this.startGame}>START GAME</button></Link>
       </section>
     )
   }
@@ -56,7 +65,8 @@ class Intro extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  addTriviaDataToStore: triviaData => dispatch(getTriviaData(triviaData))
+  saveTriviaDataToStore: triviaData => dispatch(saveTriviaData(triviaData)),
+  saveUserNameToStore: userName => dispatch(saveUserName(userName))
 })
 
 export default connect(null, mapDispatchToProps)(Intro);
