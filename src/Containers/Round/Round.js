@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Round.css';
 
 class Round extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { selectedAnswer: null }
   }
 
@@ -30,3 +30,5 @@ class Round extends Component {
 }
 
 export default Round;
+
+// From which country did the song Gangnam Style originate from?
