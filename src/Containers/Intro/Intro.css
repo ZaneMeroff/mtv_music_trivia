@@ -3,6 +3,11 @@
   font-weight: lighter;
 }
 
+#large-logo {
+  height: 300px;
+  width: 400px;
+}
+
 #temp-logo {
   font-size: 300%;
 }

@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import { triviaDataReducer } from './triviaDataReducer';
+import { triviaData } from './triviaDataReducer';
+import { correctQuestions } from './correctQuestionsReducer';
+import { incorrectQuestions } from './incorrectQuestionsReducer';
 
 export const rootReducer = combineReducers({
-  triviaDataReducer
+  triviaData,
+  correctQuestions,
+  incorrectQuestions
 });

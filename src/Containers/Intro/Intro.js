@@ -4,6 +4,7 @@ import { fetchTriviaData } from '../../apiCalls';
 import { connect } from 'react-redux';
 import { getTriviaData } from '../../actions';
 import './Intro.css'
+import logo from '../../assets/mtv_logo_yellow.png';
 
 class Intro extends Component {
   constructor() {
@@ -16,8 +17,8 @@ class Intro extends Component {
   }
 
   getTriviaData = () => {
-    // fetchTriviaData(this.state.difficultyDropBox)
-    //   .then(triviaData => this.props.addTriviaDataToStore(triviaData))
+    fetchTriviaData(this.state.difficultyDropBox)
+      .then(triviaData => this.props.addTriviaDataToStore(triviaData.results))
   }
 
   updateDropBoxState = difficulty => {
@@ -31,7 +32,8 @@ class Intro extends Component {
   render() {
     return (
       <section id='intro-container'>
-        <h1 id='temp-logo'>🎤 MTV MUSIC TRIVIA 👨‍🎤</h1>
+        <img src={ logo } id='large-logo' alt='mtv trivia logo'/>
+        <h1 id='temp-logo'>T R I V I A</h1>
         <input
           id='name-input'
           type='text'

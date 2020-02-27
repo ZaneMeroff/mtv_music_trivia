@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import Intro from '../Intro/Intro';
 import Header from '../Header/Header';
-import Round from '../Round/Round';
+import RoundContainer from '../RoundContainer/RoundContainer';
 import QResponse from '../QResponse/QResponse';
 import Result from '../Result/Result';
 import './App.css';
@@ -18,7 +18,7 @@ class App extends Component {
           </Route>
           <Route exact path='/round'>
             <Header />
-            <Round />
+            <RoundContainer />
           </Route>
         </section>
       </div>
