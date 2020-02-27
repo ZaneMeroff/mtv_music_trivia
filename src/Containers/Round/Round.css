@@ -1,0 +1,46 @@
+
+.question-text {
+  font-size: 300%;
+  color: #FFF;
+  padding: 3%;
+}
+
+.answer-container,
+.question-container {
+  border-radius: 20px;
+  margin: 5%;
+  height: 100px;
+  width: 90%;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+}
+
+.answer-container:hover {
+  cursor: pointer;
+}
+
+.question-container {
+  height: 200px;
+  width: 90%;
+}
+
+.answer-text,
+.question-text {
+  font-size: 200%;
+  color: #FFF;
+}
+
+.submit-answer-button {
+  width: 90%;
+  height: 100px;
+  border-radius: 20px;
+  font-size: 200%;
+  margin: 5%;
+  background-color: #fff200;
+  border: none;
+}
+
+.submit-answer-button:hover {
+  cursor: pointer;
+}
