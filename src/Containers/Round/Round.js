@@ -2,32 +2,30 @@ import React, { Component } from 'react';
 import './Round.css';
 
 class Round extends Component {
+  constructor() {
+    super();
+    this.state = { selectedAnswer: null }
+  }
+
+  upDateSelectedAnswer = answer => {
+    this.setState({selectedAnswer: answer })
+  }
 
   render() {
     return (
-      <div class='round-container'>
-        <div class='question-container'>
+      <div className='round'>
+        <div className='question-container'>
           <p className='question-text'>From which country did the song Gangnam Style originate from?</p>
         </div>
-        <div class='answer-container'>
-          <p className='answer-text'>South Korea</p>
-        </div>
-        <div class='answer-container'>
-          <p className='answer-text'>Japan</p>
-        </div>
-        <div class='answer-container'>
-          <p className='answer-text'>North Korea</p>
-        </div>
-        <div class='answer-container'>
-          <p className='answer-text'>China</p>
-        </div>
+        <button onClick={e => this.upDateSelectedAnswer(e.target.value)} value='South Korea' className={this.state.selectedAnswer ? 'answer-button active-button' : 'answer-button'}>South Korea</button>
+        <button onClick={e => this.upDateSelectedAnswer(e.target.value)} value='Japan' className='answer-button'>Japan</button>
+        <button onClick={e => this.upDateSelectedAnswer(e.target.value)} value='South Korea' className='answer-button'>North Korea</button>
+        <button onClick={e => this.upDateSelectedAnswer(e.target.value)} value='China' className='answer-button'>China</button>
         <button className='submit-answer-button'>SUBMIT ANSWER</button>
       </div>
     )
 
-
   }
-
 
 }
 
