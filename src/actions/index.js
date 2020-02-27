@@ -1,4 +1,4 @@
-export const getTriviaData = triviaData => ({
+export const saveTriviaData = triviaData => ({
   type: 'GET_TRIVIA_DATA',
   triviaData
 });
@@ -11,4 +11,14 @@ export const correctQuestions = question => ({
 export const incorrectQuestions = question => ({
   type: 'SAVE_INCORRECT_QUESTION',
   question
+});
+
+export const saveUserName = name => ({
+  type: 'SAVE_USERNAME',
+  name
+});
+
+export const difficulty = difficulty => ({
+  type: 'SAVE_DIFFICULTY',
+  difficulty
 });

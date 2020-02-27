@@ -4,5 +4,4 @@
 
 #### How should this be manually tested?
 
-#### Potential changes?
- 
+#### Potential changes / Next step?
