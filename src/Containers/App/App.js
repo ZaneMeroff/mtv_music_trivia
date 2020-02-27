@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Intro from '../Intro/Intro';
+import Header from '../Header/Header';
+import Round from '../Round/Round';
 import './App.css';
 
 class App extends Component {
@@ -8,8 +10,8 @@ class App extends Component {
     return (
       <div id='outer-div'>
         <section id='game-container'>
-          <h1>MTV MUSIC TRIVIA! 👨‍🎤</h1>
-          <Intro />
+          <Header />
+          <Round />
         </section>
       </div>
     )
