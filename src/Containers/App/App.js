@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div id='outer-div'>
         <section id='game-container'>
-          <Result />
+          <Intro />
         </section>
       </div>
     )
