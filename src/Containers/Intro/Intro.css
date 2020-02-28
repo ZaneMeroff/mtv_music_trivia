@@ -42,6 +42,7 @@
 
 #difficulty-dropbox {
   width: 527px;
+  text-transform: uppercase;
 }
 
 #start-game-button {
@@ -49,6 +50,7 @@
   background-color: #fff200;
   padding: 0%;
   border: none;
+  text-transform: uppercase;
 }
 
 #start-game-button:hover,

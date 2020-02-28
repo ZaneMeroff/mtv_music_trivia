@@ -30,11 +30,13 @@
 }
 
 #correct-answers {
-  color: #ff64de;
+  color: #03a9f4;
+  margin-right: 8px;
 }
 
 #incorrect-answers {
-  color: #03a9f4;
+  color: #ff64de;
+  margin-left: 8px;
 }
 
 #difficulty-container {

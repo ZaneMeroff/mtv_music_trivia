@@ -58,15 +58,14 @@ class Intro extends Component {
         />
         <select id='difficulty-dropbox' onChange={e => this.updateDropBoxState(e.target.value)}>
           <option value={null}>select difficulty</option>
-          <option value='easy'>EASY</option>
-          <option value='medium'>MEDIUM</option>
-          <option value='hard'>HARD</option>
+          <option value='easy'>easy</option>
+          <option value='medium'>medium</option>
+          <option value='hard'>hard</option>
         </select>
-        <Link to={'/round'}><button id='start-game-button' onClick={this.startGame}>START GAME</button></Link>
+        <Link to={'/round'}><button id='start-game-button' onClick={this.startGame}>start game</button></Link>
       </section>
     )
   }
-
 }
 
 export const mapDispatchToProps = (dispatch) => ({

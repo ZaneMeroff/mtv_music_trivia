@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import RoundContainer from '../RoundContainer/RoundContainer';
 import QResponse from '../QResponse/QResponse';
 import Result from '../Result/Result';
+import Round from '../Round/Round';
 import './App.css';
 
 class App extends Component {
@@ -13,13 +14,20 @@ class App extends Component {
     return (
       <div id='outer-div'>
         <section id='game-container'>
-          <Route exact path='/'>
-            <Intro />
-          </Route>
-          <Route exact path='/round'>
-            <Header />
-            <RoundContainer />
-          </Route>
+        <Switch>
+
+        <Route exact path='/'>
+          <Intro />
+        </Route>
+
+        <Route exact path='/round'>
+          <Header />
+          <Round/>
+        </Route>
+
+        <h1>BAD FILE PATH!</h1>
+        </Switch>
+
         </section>
       </div>
     )
