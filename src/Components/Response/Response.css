@@ -1,0 +1,13 @@
+.response-contianer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.response-text {
+  font-size: 600%;
+  color: #fff200;
+}
