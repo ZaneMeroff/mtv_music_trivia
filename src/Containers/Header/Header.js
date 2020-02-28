@@ -10,8 +10,8 @@ class Header extends Component {
       <section id='header-container'>
         <img src={ logo } id='nav-logo' alt='mtv trivia logo'/>
         <div id='score-container'>
-          <p id='question-tally'>Question 5 of 10</p>
-          <p id='score-tally'><span id='correct-answers'> 3✔ </span> <span id='incorrect-answers'> 2x</span></p>
+          <p id='question-tally'>Question {this.props.correct.length + this.props.incorrect.length} of 10</p>
+          <p id='score-tally'><span id='correct-answers'> {this.props.correct.length}✔ </span> <span id='incorrect-answers'> {this.props.incorrect.length}x</span></p>
         </div>
         <div id='difficulty-container'>
           <p id='difficulty-heading'>Difficulty:</p>
@@ -26,7 +26,9 @@ class Header extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  difficulty: state.difficulty
+  difficulty: state.difficulty,
+  correct: state.correctQuestions,
+  incorrect: state.incorrectQuestions
 });
 
 export default connect(mapStateToProps)(Header);
