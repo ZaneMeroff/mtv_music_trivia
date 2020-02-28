@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Response from '../../Components/Response/Response';
 import { correctQuestions, incorrectQuestions } from '../../actions';
 import { connect } from 'react-redux';
 import './Round.css';
@@ -10,6 +11,7 @@ class Round extends Component {
     super(props);
     this.state = {
       selectedAnswer: null,
+      errorMessage: ''
     }
   }
 
@@ -18,12 +20,14 @@ class Round extends Component {
   }
 
   submitAnswer = () => {
-    if (this.state.selectedAnswer === this.props.triviaData[i].correct_answer) {
-      this.props.addToCorrectQuestions(this.props.triviaData[i])
-      window.alert('youre right!')
-    } else {
-      this.props.addToIncorrectQuestions(this.props.triviaData[i])
-      window.alert('you fucking suck! -Johnny')
+    if (this.state.selectedAnswer) {
+      if (this.state.selectedAnswer === this.props.triviaData[i].correct_answer) {
+        this.props.addToCorrectQuestions(this.props.triviaData[i])
+        window.alert('youre right!')
+      } else {
+        this.props.addToIncorrectQuestions(this.props.triviaData[i])
+        window.alert('incorrect! -Johnny')
+      }
     }
     i++
     this.forceUpdate()
@@ -42,25 +46,24 @@ class Round extends Component {
 
   render() {
 
-    let allAnswers = []
-
     if (!this.props.triviaData.length) {
-        return <h1>loading</h1>
+        return <Response text='loading...'/>
     } else {
 
-    allAnswers = [...this.props.triviaData[i].incorrect_answers, this.props.triviaData[i].correct_answer]
-    let shuffledAnswers = this.shuffleAnswers(allAnswers)
-    console.log(shuffledAnswers, allAnswers);
+    let allAnswers = [...this.props.triviaData[i].incorrect_answers, this.props.triviaData[i].correct_answer]
+
+    let buttons = allAnswers.map(button => {
+      return <button onClick={e => this.updateSelectedAnswer(e.target.value)} value={button} className={button === this.state.selectedAnswer ? 'answer-button active-button' : 'answer-button'}>{button}</button>
+    })
+
       return (
         <div className='round'>
           <div className='question-container'>
             <p className='question-text'>{this.props.triviaData[i].question}</p>
           </div>
-          <button onClick={e => this.updateSelectedAnswer(e.target.value)} value={this.props.triviaData[i].correct_answer} className={this.state.selectedAnswer ? 'answer-button active-button' : 'answer-button'}>{this.props.triviaData[i].correct_answer}</button>
-          <button onClick={e => this.updateSelectedAnswer(e.target.value)} value='Japan' className='answer-button'>{this.props.triviaData[i].incorrect_answers[0]}</button>
-          <button onClick={e => this.updateSelectedAnswer(e.target.value)} value='North Korea' className='answer-button'>{this.props.triviaData[i].incorrect_answers[1]}</button>
-          <button onClick={e => this.updateSelectedAnswer(e.target.value)} value='China' className='answer-button'>{this.props.triviaData[i].incorrect_answers[2]}</button>
+          {buttons}
           <button className='submit-answer-button' onClick={this.submitAnswer}>SUBMIT ANSWER</button>
+          <p>{this.state.errorMessage}</p>
         </div>
       )
     }

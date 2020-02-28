@@ -1,12 +1,13 @@
-.qresponse-contianer {
+.response-contianer {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
-.qresponse-text {
+.response-text {
   font-size: 600%;
   color: #fff200;
 }
