@@ -10,9 +10,8 @@
 }
 
 #nav-logo {
-  background-color: blue;
-  height: 150px;
-  width: 150px;
+  height: 160px;
+  width: 190px;
 }
 
 #score-container {
@@ -27,15 +26,15 @@
 }
 
 #score-tally {
-  font-size: 280%;
+  font-size: 290%;
 }
 
 #correct-answers {
-  color: #00a200;
+  color: #ff64de;
 }
 
 #incorrect-answers {
-  color: #ff0000;
+  color: #03a9f4;
 }
 
 #difficulty-container {
