@@ -10,12 +10,12 @@ class Header extends Component {
       <section id='header-container'>
         <img src={ logo } id='nav-logo' alt='mtv trivia logo'/>
         <div id='score-container'>
-          <p id='question-tally'>question 5 of 10</p>
-          <p id='score-tally'><span id='correct-answers'>3 </span>-<span id='incorrect-answers'> 2</span></p>
+          <p id='question-tally'>Question 5 of 10</p>
+          <p id='score-tally'><span id='correct-answers'> 3✔ </span> <span id='incorrect-answers'> 2x</span></p>
         </div>
         <div id='difficulty-container'>
-          <p id='difficulty-heading'>DIFFICULTY:</p>
-          <p id='difficulty-rating'>{this.props.difficulty}</p>
+          <p id='difficulty-heading'>Difficulty:</p>
+          <p id='difficulty-rating'>{this.props.difficulty.toUpperCase()}</p>
         </div>
       </section>
 
