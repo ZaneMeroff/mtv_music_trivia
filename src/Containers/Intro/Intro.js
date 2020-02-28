@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchTriviaData } from '../../apiCalls';
 import { connect } from 'react-redux';
-import { saveTriviaData, saveUserName } from '../../actions';
+import { saveTriviaData, saveUserName, saveDifficulty } from '../../actions';
 import './Intro.css'
 import logo from '../../assets/mtv_logo_yellow.png';
 
@@ -18,6 +18,7 @@ class Intro extends Component {
 
   startGame = () => {
     this.storeUserName(this.state.name);
+    this.storeDifficulty(this.state.difficultyDropBox)
     this.getTriviaData();
   }
 
@@ -28,6 +29,10 @@ class Intro extends Component {
 
   storeUserName = name => {
     this.props.saveUserNameToStore(name);
+  }
+
+  storeDifficulty = difficulty => {
+    this.props.saveDifficultyToStore(difficulty);
   }
 
   updateDropBoxState = difficulty => {
@@ -42,7 +47,7 @@ class Intro extends Component {
     return (
       <section id='intro-container'>
         <img src={ logo } id='large-logo' alt='mtv trivia logo'/>
-        <h1 id='temp-logo'>T R I V I A</h1>
+        <h1 id='trivia-text'>T R I V I A</h1>
         <input
           id='name-input'
           type='text'
@@ -66,7 +71,8 @@ class Intro extends Component {
 
 export const mapDispatchToProps = (dispatch) => ({
   saveTriviaDataToStore: triviaData => dispatch(saveTriviaData(triviaData)),
-  saveUserNameToStore: userName => dispatch(saveUserName(userName))
+  saveUserNameToStore: userName => dispatch(saveUserName(userName)),
+  saveDifficultyToStore: difficulty => dispatch(saveDifficulty(difficulty))
 })
 
 export default connect(null, mapDispatchToProps)(Intro);

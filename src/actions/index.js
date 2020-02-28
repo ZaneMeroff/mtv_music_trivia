@@ -18,7 +18,7 @@ export const saveUserName = name => ({
   name
 });
 
-export const difficulty = difficulty => ({
+export const saveDifficulty = difficulty => ({
   type: 'SAVE_DIFFICULTY',
   difficulty
 });

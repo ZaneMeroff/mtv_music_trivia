@@ -3,22 +3,36 @@ import Round from '../Round/Round';
 import { connect } from 'react-redux';
 import './RoundContainer.css';
 
+let questions;
+let i = 0
+
 class RoundContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      questions: []
+    }
+  }
+
+  changeCard = () => {
+    i++
+
   }
 
   render() {
 
-    let round = this.props.triviaData.map(card => {
-      return <Round question={card.question} />
+    questions = [];
+
+    this.props.triviaData.forEach(data => {
+      questions.push(data)
     })
+
+    const triviaData = <Round trivia={questions[i]} changeCard={this.changeCard} />
 
     return (
       <div>
-        {round}
+        {triviaData}
       </div>
-
     )
 
   }
