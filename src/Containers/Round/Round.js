@@ -11,6 +11,11 @@ class Round extends Component {
     this.setState({selectedAnswer: answer })
   }
 
+  submitAnswer = () => {
+
+
+  }
+
   render() {
     return (
       <div className='round'>
@@ -21,7 +26,7 @@ class Round extends Component {
         <button onClick={e => this.upDateSelectedAnswer(e.target.value)} value='Japan' className='answer-button'>Japan</button>
         <button onClick={e => this.upDateSelectedAnswer(e.target.value)} value='South Korea' className='answer-button'>North Korea</button>
         <button onClick={e => this.upDateSelectedAnswer(e.target.value)} value='China' className='answer-button'>China</button>
-        <button className='submit-answer-button'>SUBMIT ANSWER</button>
+        <button className='submit-answer-button' onClick={this.submitAnswer}>SUBMIT ANSWER</button>
       </div>
     )
 
