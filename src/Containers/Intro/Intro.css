@@ -6,10 +6,13 @@
 #large-logo {
   height: 300px;
   width: 400px;
+  margin-left: 5%;
 }
 
-#temp-logo {
-  font-size: 300%;
+#trivia-text {
+  font-size: 350%;
+  color: #ff64de;
+  font-weight: bolder;
 }
 
 #intro-container {
