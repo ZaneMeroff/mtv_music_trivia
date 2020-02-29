@@ -28,12 +28,29 @@ class Intro extends Component {
       .then(cleanData => this.props.saveTriviaDataToStore(cleanData))
   }
 
+  creatAllAnswers = (correctAnswer, incorrectAnswers) => {
+    let allAnswers = [...incorrectAnswers, correctAnswer]
+    return this.shuffleAnswers(allAnswers)
+  }
+
+  shuffleAnswers = a => {
+    let j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+  }
+
   restructureData = data => {
     return data.results.map(q => {
       return {
         question: q.question,
         correct_answer: q.correct_answer,
         incorrect_answers: q.incorrect_answers,
+        all_answers: this.creatAllAnswers(q.correct_answer, q.incorrect_answers),
         your_answer: null
       }
     })
