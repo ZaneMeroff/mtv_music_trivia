@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Response from '../../Components/Response/Response';
+import Result from '../Result/Result';
 import { correctQuestions, incorrectQuestions } from '../../actions';
 import { connect } from 'react-redux';
 import './Round.css';
@@ -20,21 +21,28 @@ class Round extends Component {
   }
 
   submitAnswer = () => {
-    if (this.state.selectedAnswer) {
+
       if (this.state.selectedAnswer === this.props.triviaData[i].correct_answer) {
         this.props.addToCorrectQuestions(this.props.triviaData[i])
-        window.alert('youre right!')
+        window.alert('RIGHT!')
       } else {
+        this.props.triviaData[i].your_answer = this.state.selectedAnswer
         this.props.addToIncorrectQuestions(this.props.triviaData[i])
-        window.alert('incorrect! -Johnny')
+        window.alert('WRONG!')
       }
-    }
+
     i++
     this.forceUpdate()
   }
 
+  determineEndOfGame = () => {
+    if (i === 9) {
+      return <Result />
+    }
+  }
+
   shuffleAnswers = a => {
-    var j, x, i;
+    let j, x, i;
     for (i = a.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
         x = a[i];
@@ -42,9 +50,12 @@ class Round extends Component {
         a[j] = x;
     }
     return a;
-}
+  }
 
   render() {
+
+    // need to determine end of game in here somewhere
+    // need to get shuffleAnswers to work
 
     if (!this.props.triviaData.length) {
         return <Response text='loading...'/>
