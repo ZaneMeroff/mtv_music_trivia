@@ -8,9 +8,17 @@ export const correctQuestions = question => ({
   question
 });
 
+export const clearCorrectQuestions = () => ({
+  type: 'CLEAR_CORRECT_QUESTIONS'
+});
+
 export const incorrectQuestions = question => ({
   type: 'SAVE_INCORRECT_QUESTION',
   question
+});
+
+export const clearIncorrectQuestions = () => ({
+  type: 'CLEAR_INCORRECT_QUESTIONS'
 });
 
 export const saveUserName = name => ({
