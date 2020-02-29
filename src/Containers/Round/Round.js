@@ -22,19 +22,23 @@ class Round extends Component {
 
   submitAnswer = () => {
 
-      if (this.state.selectedAnswer === this.props.triviaData[this.state.counter].correct_answer) {
+      if (!this.state.selectedAnswer) {
+        this.setState({errorMessage: 'You Must Select an Answer!'})
+      } else if (this.state.selectedAnswer === this.props.triviaData[this.state.counter].correct_answer) {
         this.props.addToCorrectQuestions(this.props.triviaData[this.state.counter])
         this.setState({rightORwrong: true})
+        this.resetForNextRound();
       } else {
         this.props.triviaData[this.state.counter].your_answer = this.state.selectedAnswer
         this.props.addToIncorrectQuestions(this.props.triviaData[this.state.counter])
         this.setState({rightORwrong: false})
+        this.resetForNextRound();
       }
-
-    setTimeout(() => this.setState({counter: this.state.counter+1, rightORwrong: null}), 2000);
-
   }
 
+  resetForNextRound = () => {
+    setTimeout(() => this.setState({counter: this.state.counter+1, rightORwrong: null, selectedAnswer: null, errorMessage: ''}), 500);
+  }
 
   displayRightOrWrong = rightORwrong => {
     if (rightORwrong) {
@@ -44,16 +48,15 @@ class Round extends Component {
     }
   }
 
-  // determineEndOfGame = () => {
-  //   if (i === 9) {
-  //     return <Result />
-  //   }
-  // }
+  determineEndOfGame = () => {
+    return this.state.counter > 9
+  }
 
   render() {
 
-    // need to determine end of game in here somewhere
-    // need to get shuffleAnswers to work
+    if (this.determineEndOfGame()) {
+      return <Result />
+    }
 
     if (!this.props.triviaData.length) {
         return <Response text='loading...'/>
@@ -75,15 +78,9 @@ class Round extends Component {
         </div>
       )
     } else if (this.state.rightORwrong !== null) {
-
       return this.displayRightOrWrong(this.state.rightORwrong)
-
     }
-
-
-
   }
-
 }
 
 export const mapStateToProps = (state) => ({
