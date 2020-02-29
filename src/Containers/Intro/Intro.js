@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchTriviaData } from '../../apiCalls';
 import { connect } from 'react-redux';
-import { saveTriviaData, saveUserName, saveDifficulty } from '../../actions';
+import { saveTriviaData, saveUserName, saveDifficulty, clearCorrectQuestions, clearIncorrectQuestions } from '../../actions';
 import './Intro.css'
 import logo from '../../assets/mtv_logo_yellow.png';
 
@@ -17,6 +17,8 @@ class Intro extends Component {
   }
 
   startGame = () => {
+    this.props.clearCorrectQuestions();
+    this.props.clearIncorrectQuestions();
     this.storeUserName(this.state.name);
     this.storeDifficulty(this.state.difficultyDropBox)
     this.getTriviaData();
@@ -100,7 +102,9 @@ class Intro extends Component {
 export const mapDispatchToProps = (dispatch) => ({
   saveTriviaDataToStore: triviaData => dispatch(saveTriviaData(triviaData)),
   saveUserNameToStore: userName => dispatch(saveUserName(userName)),
-  saveDifficultyToStore: difficulty => dispatch(saveDifficulty(difficulty))
+  saveDifficultyToStore: difficulty => dispatch(saveDifficulty(difficulty)),
+  clearCorrectQuestions: () => dispatch(clearCorrectQuestions()),
+  clearIncorrectQuestions: () => dispatch(clearIncorrectQuestions())
 })
 
 export default connect(null, mapDispatchToProps)(Intro);

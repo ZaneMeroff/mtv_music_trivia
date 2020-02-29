@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Result.css';
 
@@ -21,7 +22,7 @@ class Result extends Component {
         <p className='result-text'>way to go <span id='user-input'>{this.props.username}</span></p>
         <p className='result-text'>difficulty: <span id='user-input'>{this.props.difficulty}</span></p>
         <p className='result-text'>score: <span id='user-input'>{this.props.right.length}0%</span></p>
-        <button className='new-game-button'>new game</button>
+        <Link to={'/'}><button className='new-game-button'>new game</button></Link>
 
         <div className='missed-question-outer-container'>
           <div className='missed-question-container'>
