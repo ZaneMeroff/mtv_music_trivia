@@ -26,16 +26,15 @@
 }
 
 .question-container {
-  height: 200px;
+  height: auto;
   width: 90%;
   border-radius: 50px;
 }
 
 .question-text {
   font-size: 250%;
-  padding: 3%;
+  padding: 1%;
   text-align: center;
-  height: auto;
 }
 
 .submit-answer-button {
