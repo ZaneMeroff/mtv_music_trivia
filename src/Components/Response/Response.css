@@ -10,4 +10,5 @@
 .response-text {
   font-size: 600%;
   color: #fff200;
+  transform: rotate(-20deg);
 }
