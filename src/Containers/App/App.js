@@ -24,6 +24,10 @@ class App extends Component {
             <Round/>
           </Route>
 
+          <Route exact path='/result'>
+            <Result />
+          </Route>
+
           <Response text='Page Not Found!'/>
 
         </Switch>
