@@ -24,7 +24,19 @@ class Intro extends Component {
 
   getTriviaData = () => {
     fetchTriviaData(this.state.difficultyDropBox)
-      .then(triviaData => this.props.saveTriviaDataToStore(triviaData.results))
+      .then(dirtyData => this.restructureData(dirtyData))
+      .then(cleanData => this.props.saveTriviaDataToStore(cleanData))
+  }
+
+  restructureData = data => {
+    return data.results.map(q => {
+      return {
+        question: q.question,
+        correct_answer: q.correct_answer,
+        incorrect_answers: q.incorrect_answers,
+        your_answer: null
+      }
+    })
   }
 
   storeUserName = name => {
