@@ -73,8 +73,9 @@ class Round extends Component {
             <p className='question-text'>{this.props.triviaData[this.state.counter].question}</p>
           </div>
           {buttons}
-          <button className='submit-answer-button' onClick={this.submitAnswer}>SUBMIT ANSWER</button>
-          <p>{this.state.errorMessage}</p>
+          <p className='round-error-message'>{this.state.errorMessage}</p>
+          <button className='submit-answer-button' onClick={this.submitAnswer}>submit answer</button>
+
         </div>
       )
     } else if (this.state.rightORwrong !== null) {
