@@ -5,14 +5,14 @@ import { correctQuestions, incorrectQuestions } from '../../actions';
 import { connect } from 'react-redux';
 import './Round.css';
 
-let i = 0;
-
 class Round extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedAnswer: null,
-      errorMessage: ''
+      errorMessage: '',
+      rightORwrong: null,
+      counter: 0
     }
   }
 
@@ -22,35 +22,33 @@ class Round extends Component {
 
   submitAnswer = () => {
 
-      if (this.state.selectedAnswer === this.props.triviaData[i].correct_answer) {
-        this.props.addToCorrectQuestions(this.props.triviaData[i])
-        window.alert('RIGHT!')
+      if (this.state.selectedAnswer === this.props.triviaData[this.state.counter].correct_answer) {
+        this.props.addToCorrectQuestions(this.props.triviaData[this.state.counter])
+        this.setState({rightORwrong: true})
       } else {
-        this.props.triviaData[i].your_answer = this.state.selectedAnswer
-        this.props.addToIncorrectQuestions(this.props.triviaData[i])
-        window.alert('WRONG!')
+        this.props.triviaData[this.state.counter].your_answer = this.state.selectedAnswer
+        this.props.addToIncorrectQuestions(this.props.triviaData[this.state.counter])
+        this.setState({rightORwrong: false})
       }
 
-    i++
-    this.forceUpdate()
+    setTimeout(() => this.setState({counter: this.state.counter+1, rightORwrong: null}), 2000);
+
   }
 
-  determineEndOfGame = () => {
-    if (i === 9) {
-      return <Result />
+
+  displayRightOrWrong = rightORwrong => {
+    if (rightORwrong) {
+      return <Response text='RIGHT!'/>
+    } else {
+      return <Response text='WRONG!'/>
     }
   }
 
-  shuffleAnswers = a => {
-    let j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
-  }
+  // determineEndOfGame = () => {
+  //   if (i === 9) {
+  //     return <Result />
+  //   }
+  // }
 
   render() {
 
@@ -59,25 +57,31 @@ class Round extends Component {
 
     if (!this.props.triviaData.length) {
         return <Response text='loading...'/>
-    } else {
 
-    let allAnswers = [...this.props.triviaData[i].incorrect_answers, this.props.triviaData[i].correct_answer]
+    } else if (this.state.rightORwrong === null) {
 
-    let buttons = allAnswers.map(button => {
-      return <button onClick={e => this.updateSelectedAnswer(e.target.value)} value={button} className={button === this.state.selectedAnswer ? 'answer-button active-button' : 'answer-button'}>{button}</button>
-    })
+      let buttons = this.props.triviaData[this.state.counter].all_answers.map(button => {
+        return <button onClick={e => this.updateSelectedAnswer(e.target.value)} value={button} className={button === this.state.selectedAnswer ? 'answer-button active-button' : 'answer-button'}>{button}</button>
+      })
 
       return (
         <div className='round'>
           <div className='question-container'>
-            <p className='question-text'>{this.props.triviaData[i].question}</p>
+            <p className='question-text'>{this.props.triviaData[this.state.counter].question}</p>
           </div>
           {buttons}
           <button className='submit-answer-button' onClick={this.submitAnswer}>SUBMIT ANSWER</button>
           <p>{this.state.errorMessage}</p>
         </div>
       )
+    } else if (this.state.rightORwrong !== null) {
+
+      return this.displayRightOrWrong(this.state.rightORwrong)
+
     }
+
+
+
   }
 
 }
