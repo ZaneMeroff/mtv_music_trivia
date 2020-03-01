@@ -6,7 +6,7 @@ import { saveTriviaData, saveUserName, saveDifficulty, clearCorrectQuestions, cl
 import './Intro.css'
 import logo from '../../assets/mtv_logo_yellow.png';
 
-class Intro extends Component {
+export class Intro extends Component {
   constructor() {
     super();
     this.state =
@@ -30,7 +30,7 @@ class Intro extends Component {
       .then(cleanData => this.props.saveTriviaDataToStore(cleanData))
   }
 
-  creatAllAnswers = (correctAnswer, incorrectAnswers) => {
+  createAllAnswers = (correctAnswer, incorrectAnswers) => {
     let allAnswers = [...incorrectAnswers, correctAnswer]
     return this.shuffleAnswers(allAnswers)
   }
@@ -52,7 +52,7 @@ class Intro extends Component {
         question: q.question,
         correct_answer: q.correct_answer,
         incorrect_answers: q.incorrect_answers,
-        all_answers: this.creatAllAnswers(q.correct_answer, q.incorrect_answers),
+        all_answers: this.createAllAnswers(q.correct_answer, q.incorrect_answers),
         your_answer: null
       }
     })
