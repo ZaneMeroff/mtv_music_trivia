@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Result.css';
 
-class Result extends Component {
+export class Result extends Component {
 
   render() {
 
     let missedQuestions = this.props.wrong.map(q => {
       return (
-        <div className='missed-question-container'>
+        <div key={q.question} className='missed-question-container'>
           <p className='missed-question-text'>{q.question}</p>
           <p className='missed-question-text'>your answer: <span className='missed-question-data'>{q.your_answer}</span></p>
           <p className='missed-question-text'>correct answer: <span className='missed-question-data'>{q.correct_answer}</span></p>
