@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import logo from '../../assets/mtv_logo_pink.png';
 import './Header.css';
 
-class Header extends Component {
+export class Header extends Component {
 
   render() {
     return (
@@ -18,11 +18,8 @@ class Header extends Component {
           <p id='difficulty-rating'>{this.props.difficulty.toUpperCase()}</p>
         </div>
       </section>
-
     )
-
   }
-
 }
 
 export const mapStateToProps = (state) => ({
