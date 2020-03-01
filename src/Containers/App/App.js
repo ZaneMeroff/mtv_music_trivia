@@ -7,39 +7,29 @@ import Result from '../Result/Result';
 import Round from '../Round/Round';
 import './App.css';
 
-class App extends Component {
+export class App extends Component {
 
   render() {
     return (
       <div id='outer-div'>
         <section id='game-container'>
         <Switch>
-
           <Route exact path='/'>
             <Intro />
           </Route>
-
           <Route exact path='/round'>
             <Header />
             <Round/>
           </Route>
-
           <Route exact path='/result'>
             <Result />
           </Route>
-
           <Response text='Page Not Found!'/>
-
         </Switch>
-
         </section>
       </div>
     )
-
-
   }
-
-
 }
 
 export default App;

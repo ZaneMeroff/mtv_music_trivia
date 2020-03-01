@@ -44,6 +44,14 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction)
   })
 
+  it('should have a type CLEAR_CORRECT_QUESTIONS', () => {
+    const expectedAction = {
+      type: 'CLEAR_CORRECT_QUESTIONS'
+    }
+    const result = actions.clearCorrectQuestions()
+    expect(result).toEqual(expectedAction)
+  })
+
   it('should have a type SAVE_INCORRECT_QUESTION', () => {
     const question = [{
           category: "Entertainment: Music",
@@ -62,6 +70,14 @@ describe('actions', () => {
       question
     }
     const result = actions.incorrectQuestions(question)
+    expect(result).toEqual(expectedAction)
+  })
+
+  it('should have a type CLEAR_INCORRECT_QUESTIONS', () => {
+    const expectedAction = {
+      type: 'CLEAR_INCORRECT_QUESTIONS'
+    }
+    const result = actions.clearIncorrectQuestions()
     expect(result).toEqual(expectedAction)
   })
 

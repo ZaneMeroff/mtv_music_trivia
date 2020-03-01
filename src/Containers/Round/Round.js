@@ -5,7 +5,7 @@ import { correctQuestions, incorrectQuestions } from '../../actions';
 import { connect } from 'react-redux';
 import './Round.css';
 
-class Round extends Component {
+export class Round extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,13 +48,9 @@ class Round extends Component {
     }
   }
 
-  determineEndOfGame = () => {
-    return this.state.counter > 9
-  }
-
   render() {
 
-    if (this.determineEndOfGame()) {
+    if (this.state.counter > 9) {
       return <Result />
     }
 
@@ -75,7 +71,6 @@ class Round extends Component {
           {buttons}
           <p className='round-error-message'>{this.state.errorMessage}</p>
           <button className='submit-answer-button' onClick={this.submitAnswer}>submit answer</button>
-
         </div>
       )
     } else if (this.state.rightORwrong !== null) {

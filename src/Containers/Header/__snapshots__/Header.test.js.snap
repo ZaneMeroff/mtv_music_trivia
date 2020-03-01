@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render a Header component 1`] = `
+<section
+  id="header-container"
+>
+  <img
+    alt="mtv trivia logo"
+    id="nav-logo"
+    src="mtv_logo_pink.png"
+  />
+  <div
+    id="score-container"
+  >
+    <p
+      id="question-tally"
+    >
+      Question 
+      NaN
+       of 10
+    </p>
+    <p
+      id="score-tally"
+    >
+      <span
+        id="correct-answers"
+      >
+         
+        ✔ 
+      </span>
+       
+      <span
+        id="incorrect-answers"
+      >
+         
+        x
+      </span>
+    </p>
+  </div>
+  <div
+    id="difficulty-container"
+  >
+    <p
+      id="difficulty-heading"
+    >
+      Difficulty:
+    </p>
+    <p
+      id="difficulty-rating"
+    >
+      EASY
+    </p>
+  </div>
+</section>
+`;

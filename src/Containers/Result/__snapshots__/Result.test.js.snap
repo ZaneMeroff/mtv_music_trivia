@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Result should render a Result component 1`] = `
+<div
+  className="result-contianer"
+>
+  <p
+    className="result-text"
+  >
+    way to go 
+    <span
+      id="user-input"
+    >
+      Bob
+      !
+    </span>
+  </p>
+  <p
+    className="result-text"
+  >
+    score: 
+    <span
+      id="user-input"
+    >
+      1
+      0%
+    </span>
+  </p>
+  <Link
+    to="/"
+  >
+    <button
+      className="new-game-button"
+    >
+      new game
+    </button>
+  </Link>
+  <div
+    className="missed-question-outer-container"
+  >
+    <div
+      className="missed-question-container"
+      key="Who da best band?"
+    >
+      <p
+        className="missed-question-text"
+      >
+        Who da best band?
+      </p>
+      <p
+        className="missed-question-text"
+      >
+        your answer: 
+        <span
+          className="missed-question-data"
+        />
+      </p>
+      <p
+        className="missed-question-text"
+      >
+        correct answer: 
+        <span
+          className="missed-question-data"
+        />
+      </p>
+    </div>
+  </div>
+</div>
+`;

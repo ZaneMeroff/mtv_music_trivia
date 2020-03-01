@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Intro Intro container/component should match the snapshot 1`] = `
+<section
+  id="intro-container"
+>
+  <img
+    alt="mtv trivia logo"
+    id="large-logo"
+    src="mtv_logo_yellow.png"
+  />
+  <h1
+    id="trivia-text"
+  >
+    T R I V I A
+  </h1>
+  <input
+    id="name-input"
+    name="name"
+    onChange={[Function]}
+    placeholder="enter your name..."
+    type="text"
+    value=""
+  />
+  <select
+    id="difficulty-dropbox"
+    onChange={[Function]}
+  >
+    <option
+      value={null}
+    >
+      select difficulty
+    </option>
+    <option
+      value="easy"
+    >
+      easy
+    </option>
+    <option
+      value="medium"
+    >
+      medium
+    </option>
+    <option
+      value="hard"
+    >
+      hard
+    </option>
+  </select>
+  <Link
+    to="/round"
+  >
+    <button
+      id="start-game-button"
+      onClick={[Function]}
+    >
+      start game
+    </button>
+  </Link>
+</section>
+`;

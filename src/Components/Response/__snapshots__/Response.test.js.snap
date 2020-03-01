@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading should render a Response component 1`] = `
+<div
+  className="response-contianer"
+>
+  <p
+    className="response-text"
+  >
+    RIGHT!
+  </p>
+</div>
+`;
