@@ -27,7 +27,7 @@ exports[`Result should render a Result component 1`] = `
     </span>
   </p>
   <Link
-    to="/"
+    to="/intro"
   >
     <button
       className="new-game-button"
