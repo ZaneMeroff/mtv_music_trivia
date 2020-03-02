@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Response from '../../Components/Response/Response';
-import Result from '../Result/Result';
+import { Redirect } from 'react-router-dom';
 import { correctQuestions, incorrectQuestions } from '../../actions';
 import { connect } from 'react-redux';
 import './Round.css';
+import PropTypes from 'prop-types';
 
 export class Round extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ export class Round extends Component {
   render() {
 
     if (this.state.counter > 9) {
-      return <Result />
+      return <Redirect to='/result' />
     }
 
     if (!this.props.triviaData.length) {
@@ -60,7 +61,7 @@ export class Round extends Component {
     } else if (this.state.rightORwrong === null) {
 
       let buttons = this.props.triviaData[this.state.counter].all_answers.map(button => {
-        return <button onClick={e => this.updateSelectedAnswer(e.target.value)} value={button} className={button === this.state.selectedAnswer ? 'answer-button active-button' : 'answer-button'}>{button}</button>
+        return <button onClick={e => this.updateSelectedAnswer(e.target.value)} value={button} key={button} className={button === this.state.selectedAnswer ? 'answer-button active-button' : 'answer-button'}>{button}</button>
       })
 
       return (
@@ -87,5 +88,19 @@ export const mapDispatchToProps = (dispatch) => ({
   addToCorrectQuestions: round => dispatch(correctQuestions(round)),
   addToIncorrectQuestions: round => dispatch(incorrectQuestions(round))
 })
+
+Round.propTypes = {
+  selectedAnswer: PropTypes.string,
+  errorMessage: PropTypes.string,
+  rightORwrong: PropTypes.bool,
+  counter: PropTypes.number,
+  updateSelectedAnswer: PropTypes.func,
+  submitAnswer: PropTypes.func,
+  triviaData: PropTypes.array,
+  resetForNextRound: PropTypes.func,
+  displayRightOrWrong: PropTypes.func,
+  addToCorrectQuestions: PropTypes.func,
+  addToIncorrectQuestions: PropTypes.func
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Round);
