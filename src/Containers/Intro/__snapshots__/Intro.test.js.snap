@@ -17,6 +17,7 @@ exports[`Intro Intro container/component should match the snapshot 1`] = `
   </h1>
   <input
     id="name-input"
+    maxLength="10"
     name="name"
     onChange={[Function]}
     placeholder="enter your name..."
@@ -25,7 +26,7 @@ exports[`Intro Intro container/component should match the snapshot 1`] = `
     value=""
   />
   <div
-    id="difficulty-container"
+    id="difficulty-dropbox-container"
   >
     <p
       id="difficulty-text"
