@@ -64,18 +64,50 @@ describe('Round', () => {
         expect(wrapper.state()).toEqual(expectedState)
       });
 
-      it('should call addToCorrectQuestions, reset state, and resetForNextRound if right', () => {
-        wrapper.instance().setState({selectedAnswer: 'life'})
+      it('should call addToCorrectQuestions, reset state, and resetForNextRound if user selects right answer', () => {
+        wrapper = shallow(<Round
+          triviaData={[{
+            question: 'What is music?',
+            correct_answer: 'life',
+            all_answers: ['life', 'fun', 'great', 'awesome']
+          }]}
+          {...mockProps}
+          />);
+        const expectedData = {
+          question: 'What is music?',
+          correct_answer: 'life',
+          all_answers: ['life', 'fun', 'great', 'awesome']
+        }
+        wrapper.instance().resetForNextRound = jest.fn()
+        wrapper.setState({selectedAnswer: 'life'})
         wrapper.instance().submitAnswer()
-        expect(mockProps.addToCorrectQuestions).toHaveBeenCalled()
+        expect(mockProps.addToCorrectQuestions).toHaveBeenCalledWith(expectedData)
+        expect(wrapper.state('rightORwrong')).toEqual(true)
+        expect(wrapper.instance().resetForNextRound).toHaveBeenCalled()
       });
 
-      // it('should call addToCorrectQuestions, setState, and resetForNextRound if user selects wrong answer', () => {
-      //   wrapper.instance().submitAnswer()
-      //   expect(mockProps.addToIncorrectQuestions).toHaveBeenCalled()
-      //   expect(wrapper.state('rightORwrong')).toEqual(false)
-      //   expect(wrapper.resetForNextRound).toHaveBeenCalled()
-      // });
+      it('should call addToIncorrectQuestions, setState, and resetForNextRound if user selects wrong answer', () => {
+        wrapper = shallow(<Round
+          triviaData={[{
+            question: 'What is music?',
+            correct_answer: 'life',
+            all_answers: ['life', 'fun', 'great', 'awesome']
+          }]}
+          {...mockProps}
+          />);
+        const expectedData = {
+          question: 'What is music?',
+          correct_answer: 'life',
+          all_answers: ['life', 'fun', 'great', 'awesome'],
+          your_answer: 'great'
+        }
+        wrapper.instance().resetForNextRound = jest.fn()
+        wrapper.setState({selectedAnswer: 'great'})
+        wrapper.instance().submitAnswer()
+        expect(mockProps.addToIncorrectQuestions).toHaveBeenCalledWith(expectedData)
+        expect(wrapper.state('rightORwrong')).toEqual(false)
+        expect(wrapper.instance().resetForNextRound).toHaveBeenCalled()
+      });
 
     });
 
@@ -84,12 +116,32 @@ describe('Round', () => {
       expect(wrapper.state('errorMessage')).toEqual('')
     });
 
-    // it('should call submitAnswer when submit answer button is clicked', () => {
-    //   wrapper.instance().submitAnswer = jest.fn();
-    //   wrapper.instance().forceUpdate()
-    //   wrapper.find('.submit-answer-button').simulate('click')
-    //   expect(wrapper.instance().submitAnswer).toHaveBeenCalled()
-    // });
+    it('should call updateSelectedAnswer when an answer button is clicked', () => {
+      wrapper = shallow(<Round
+        triviaData={[{
+          question: 'What is music?',
+          correct_answer: 'life',
+          all_answers: ['life', 'fun', 'great', 'awesome']
+        }]}
+        {...mockProps}
+        />);
+      const mockEvent = {
+      target: {
+        name: 'mockName',
+        value: 'mockValue'
+      }}
+      wrapper.instance().updateSelectedAnswer = jest.fn();
+      wrapper.instance().forceUpdate()
+      wrapper.find('.answer-button').at(0).simulate('click', mockEvent)
+      expect(wrapper.instance().updateSelectedAnswer).toHaveBeenCalled()
+    });
+
+    it('should call submitAnswer when submit answer button is clicked', () => {
+      wrapper.instance().submitAnswer = jest.fn();
+      wrapper.instance().forceUpdate()
+      wrapper.find('.submit-answer-button').simulate('click')
+      expect(wrapper.instance().submitAnswer).toHaveBeenCalled()
+    });
 
   })
 

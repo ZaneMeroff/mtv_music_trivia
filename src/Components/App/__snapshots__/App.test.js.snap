@@ -28,8 +28,8 @@ exports[`App App container/component should match the snapshot 1`] = `
         <Connect(Header) />
         <Connect(Result) />
       </Route>
-      <Response
-        text="Page Not Found!"
+      <Redirect
+        to="/intro"
       />
     </Switch>
   </section>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Response from '../Response/Response';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Intro from '../../Containers/Intro/Intro';
 import Header from '../../Containers/Header/Header';
 import Result from '../../Containers/Result/Result';
@@ -9,6 +8,7 @@ import './App.css';
 
 export const App = () => {
   return (
+    <div id='outer-div'>
       <section id='game-container'>
         <Switch>
           <Route exact path='/intro'>
@@ -22,10 +22,13 @@ export const App = () => {
             <Header />
             <Result />
           </Route>
-          <Response text='Page Not Found!'/>
+          <Redirect to='/intro'/>
         </Switch>
       </section>
+    </div>
   )
 }
 
 export default App;
+
+// <Link to='/intro'><button id='redirect-button'>click here to redirect to intro</button></Link>

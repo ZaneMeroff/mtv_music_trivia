@@ -27,8 +27,8 @@ export const mapStateToProps = (state) => ({
 });
 
 Header.propTypes = {
-  correct: PropTypes.object,
-  incorrect: PropTypes.object,
+  correct: PropTypes.array,
+  incorrect: PropTypes.array,
   difficulty: PropTypes.string
 }
 
