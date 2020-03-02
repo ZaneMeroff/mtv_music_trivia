@@ -57,3 +57,7 @@
 #difficulty-dropbox:hover {
   cursor: pointer;
 }
+
+#difficulty-text {
+  font-size: 200%;
+}
