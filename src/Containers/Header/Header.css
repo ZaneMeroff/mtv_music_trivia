@@ -1,8 +1,6 @@
 #header-container {
   align-items: center;
   background-color: #fff200;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
   display: flex;
   height: 200px;
   justify-content: space-around;
