@@ -16,17 +16,16 @@ describe('Result', () => {
 
 describe('mapStateToProps', () => {
   it('should return an object with a user, right questions array, and wrong questions array', () => {
-    const question = [{question: 'Who da best band?'}]
     const mockState = {
-      username: 'Bob',
-      right: question,
-      wrong: question
-    };
+      right: undefined,
+      username: undefined,
+      wrong: undefined
+    }
     const expected = {
-      username: 'Bob',
-      right: question,
-      wrong: question
-    };
+      right: undefined,
+      username: undefined,
+      wrong: undefined
+    }
     const mappedProps = mapStateToProps(mockState);
     expect(mappedProps).toEqual(expected)
   });

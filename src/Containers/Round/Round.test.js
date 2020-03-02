@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Round } from './Round';
+import { Round, mapDispatchToProps, mapStateToProps } from './Round';
 import { shallow } from 'enzyme';
-
-  //* * * * * * NEED TO TEST mapDispatchToProps * * * * * *
-
-  //* * * * * * NEED TO TEST mapStateToProps * * * * * *
+import { correctQuestions, incorrectQuestions} from '../../actions/index';
 
 describe('Round', () => {
 
@@ -38,11 +35,27 @@ describe('Round', () => {
       expect(wrapper.state('selectedAnswer')).toEqual(expectedAnswer)
     });
 
-    it('submitAnswer', () => {
-    // * * * * * * * * * * * * * * * * * * * * * * * *
-    // * * * * * * * * * * * * * * * * * * * * * * * *
-    // * * * * * * * * * * * * * * * * * * * * * * * *
-    });
+    describe('submitAnswer', () => {
+
+      it('should update state is no selected answer', () => {
+      // * * * * * * * * * * * * * * * * * * * * * * * *
+      // * * * * * * * * * * * * * * * * * * * * * * * *
+      // * * * * * * * * * * * * * * * * * * * * * * * *
+      });
+
+      it('should call addToCorrectQuestions, reset state, and resetForNextRound if right', () => {
+      // * * * * * * * * * * * * * * * * * * * * * * * *
+      // * * * * * * * * * * * * * * * * * * * * * * * *
+      // * * * * * * * * * * * * * * * * * * * * * * * *
+      });
+
+      it('should do the 3rd thing...', () => {
+      // * * * * * * * * * * * * * * * * * * * * * * * *
+      // * * * * * * * * * * * * * * * * * * * * * * * *
+      // * * * * * * * * * * * * * * * * * * * * * * * *
+      });
+
+    })
 
     it('should update state when resetForNextRound is called', () => {
       wrapper.instance().resetForNextRound()
@@ -79,5 +92,54 @@ describe('Round', () => {
   //     expect(result).toEqual(expected)
   //   });
   // })
+
+})
+
+describe('mapStateToProps', () => {
+
+  it('should return an array of trivia data', () => {
+    const triviaData = { triviaData: [{
+      question: 'Which band is best?',
+      correct_answer: 'The Beatles',
+      incorrect_answers: ['The Who', 'Rush']
+    }]}
+    const expected = { triviaData: [{
+      question: 'Which band is best?',
+      correct_answer: 'The Beatles',
+      incorrect_answers: ['The Who', 'Rush']
+    }]}
+    const mappedProps = mapStateToProps(triviaData)
+    expect(mappedProps).toEqual(expected)
+  })
+
+})
+
+describe('mapDispatchToProps', () => {
+
+  it('should dispatch correctQuestions with round data', () => {
+    const mockDispatch = jest.fn();
+    const triviaData = {
+      question: 'Which band is best?',
+      correct_answer: 'The Beatles',
+      incorrect_answers: ['The Who', 'Rush']
+    }
+    const actionToDispatch = correctQuestions(triviaData)
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.addToCorrectQuestions(triviaData)
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+
+  it('should dispatch incorrectQuestions with round data', () => {
+    const mockDispatch = jest.fn();
+    const triviaData = {
+      question: 'Which band is best?',
+      correct_answer: 'The Beatles',
+      incorrect_answers: ['The Who', 'Rush']
+    }
+    const actionToDispatch = incorrectQuestions(triviaData)
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.addToIncorrectQuestions(triviaData)
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
 
 })

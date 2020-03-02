@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Intro Intro container/component should match the snapshot 1`] = `
-<section
+<form
   id="intro-container"
+  onSubmit={[Function]}
 >
   <img
     alt="mtv trivia logo"
@@ -19,43 +20,45 @@ exports[`Intro Intro container/component should match the snapshot 1`] = `
     name="name"
     onChange={[Function]}
     placeholder="enter your name..."
+    required={true}
     type="text"
     value=""
   />
-  <select
-    id="difficulty-dropbox"
-    onChange={[Function]}
+  <div
+    id="difficulty-container"
   >
-    <option
-      value={null}
+    <p
+      id="difficulty-text"
     >
-      select difficulty
-    </option>
-    <option
-      value="easy"
+      difficulty:
+    </p>
+    <select
+      id="difficulty-dropbox"
+      onChange={[Function]}
     >
-      easy
-    </option>
-    <option
-      value="medium"
-    >
-      medium
-    </option>
-    <option
-      value="hard"
-    >
-      hard
-    </option>
-  </select>
-  <Link
-    to="/round"
+      <option
+        value="easy"
+      >
+        easy
+      </option>
+      <option
+        value="medium"
+      >
+        medium
+      </option>
+      <option
+        value="hard"
+      >
+        hard
+      </option>
+    </select>
+  </div>
+  <button
+    id="start-game-button"
+    onClick={[Function]}
+    type="submit"
   >
-    <button
-      id="start-game-button"
-      onClick={[Function]}
-    >
-      start game
-    </button>
-  </Link>
-</section>
+    start game
+  </button>
+</form>
 `;

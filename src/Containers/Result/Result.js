@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Result.css';
+import PropTypes from 'prop-types';
 
 export class Result extends Component {
-
   render() {
-
     let missedQuestions = this.props.wrong.map(q => {
       return (
         <div key={q.question} className='missed-question-container'>
@@ -16,7 +15,6 @@ export class Result extends Component {
         </div>
       )
     })
-
     return (
       <div className='result-contianer'>
         <p className='result-text'>way to go <span id='user-input'>{this.props.username}!</span></p>
@@ -35,5 +33,11 @@ export const mapStateToProps = (state) => ({
   right: state.correctQuestions,
   wrong: state.incorrectQuestions
 });
+
+Result.propTypes = {
+  username: PropTypes.string,
+  right: PropTypes.array,
+  wrong: PropTypes.array
+}
 
 export default connect(mapStateToProps)(Result);

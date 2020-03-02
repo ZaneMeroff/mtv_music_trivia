@@ -1,17 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Intro } from './Intro';
+import { Intro, mapDispatchToProps } from './Intro';
 import { fetchTriviaData } from '../../apiCalls';
 import { shallow } from 'enzyme';
+import { saveTriviaData, saveUserName, saveDifficulty, clearCorrectQuestions, clearIncorrectQuestions } from '../../actions/index';
+import { mockRandom } from 'jest-mock-random';
 
-  //* * * * * * NEED TO TEST mapDispatchToProps * * * * * *
+jest.mock('../../apiCalls')
 
 describe('Intro', () => {
 
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<Intro />);
+
+    const mockProps = {
+      clearCorrectQuestions: jest.fn(),
+      clearIncorrectQuestions: jest.fn(),
+      saveUserNameToStore: jest.fn(),
+      saveDifficultyToStore: jest.fn()
+    }
+
+    const mockState = {
+      name: '',
+      difficultyDropBox: 'easy',
+      formCompleted: false
+    }
+
+    wrapper = shallow(<Intro
+      {...mockProps}
+      />);
+    mockRandom([.01]);
   })
 
   describe('Intro container/component', () => {
@@ -21,64 +40,81 @@ describe('Intro', () => {
     });
 
     it('should start off with a default state', () => {
-      const expectedState = {name: '', difficultyDropBox: null}
+      const expectedState = {name: '', difficultyDropBox: 'easy', formCompleted: false}
       expect(wrapper.state()).toEqual(expectedState)
     })
 
     // it('when startGame is envoked, so should clearCorrectQuestions, clearIncorrectQuestions, storeUserName, storeDifficulty, and getTriviaData', () => {
-    //   wrapper.instance().props = {clearCorrectQuestions: jest.fn() }
-    //   const spy1 = jest.spyOn(wrapper.instance().props, 'clearCorrectQuestions')
-    //   wrapper.instance().props = {clearIncorrectQuestions: jest.fn() }
-    //   const spy2 = jest.spyOn(wrapper.instance().props, 'clearIncorrectQuestions')
+    //   const name = 'Bob'
+    //   wrapper.instance().getTriviaData = jest.fn();
     //
     //   wrapper.instance().startGame()
-    //   expect(spy1).toHaveBeenCalled();
-    //   expect(spy2).toHaveBeenCalled();
+    //   console.log(wrapper.mockProps);
+    //   expect(mockProps.clearCorrectQuestions).toHaveBeenCalled();
+    //   expect(mockProps.clearIncorrectQuestions).toHaveBeenCalled();
+    //   expect(storeUserName).toHaveBeenCalledWith(name)
     // })
 
     // it('when getTriviaData is called, so should fetchTriviaData', () => {
+    //   let mockResponse = [{
+    //       category: "Entertainment: Music",
+    //       type: "multiple",
+    //       difficulty: "easy",
+    //       question: "Who had a 1983 hit with the song &#039;Africa&#039;?",
+    //       correct_answer: "Toto",
+    //       incorrect_answers: [
+    //         "Foreigner",
+    //         "Steely Dan",
+    //         "Journey"]
+    //     }]
+    //   fetchTriviaData = jest.fn().mockImplementation(() => {
+    //     return Promise.resolve({
+    //       ok: true,
+    //       json: () => Promise.resolve(mockResponse)
+    //     });
+    //   });
     //   wrapper.instance().getTriviaData()
-    //   expect(fetchTriviaData).toHaveBeenCalled()
+    //   expect(fetchTriviaData).toHaveBeenCalledWith('easy')
     // });
 
-    // it('creatAllAnswers', () => {
-    //   const mockCorrectAnswer = 'A'
-    //   const mockIncorrectAnswers = ['B', 'C', 'D']
-    //   const result = wrapper.instance().createAllAnswers(mockCorrectAnswer, mockIncorrectAnswers)
-    //   const allAnswers = [...mockIncorrectAnswers, mockCorrectAnswer]
-    //   global.Math.random = jest.fn().mockImplementation(() => {
-    //     return 1
-    //   })
-    //   expect(result).toEqual(wrapper.instance().shuffleAnswers(allAnswers))
-    // });
+    it('creatAllAnswers should call shuffleAnswers with allAnswers', () => {
+      const mockCorrectAnswer = 'A'
+      const mockIncorrectAnswers = ['B', 'C', 'D']
+      const result = wrapper.instance().createAllAnswers(mockCorrectAnswer, mockIncorrectAnswers)
+      const allAnswers = [...mockIncorrectAnswers, mockCorrectAnswer]
+      expect(result).toEqual(wrapper.instance().shuffleAnswers(allAnswers))
+    });
 
-    // it('shuffleAnswers', () => {
-    //   global.Math.random = jest.fn().mockImplementation(() => {
-    //     return 1
-    //   })
-    //   const answersArray = ['A', 'B', 'C', 'D']
-    //   const result = wrapper.instance().shuffleAnswers(answersArray)
-    //   expect(result).toEqual(['A', 'B', 'C', 'D'])
-    // });
+    it('shuffleAnswers should shuffle the array its given', () => {
+      global.Math.random = jest.fn().mockImplementation(() => .01)
+      const answersArray = ['A', 'B', 'C', 'D']
+      const result = wrapper.instance().shuffleAnswers(answersArray)
+      expect(result).toEqual(['B','C', 'D', 'A'])
+    });
 
-    // it('restructureData', () => {
-    //   wrapper.instance().createAllAnswers = jest.fn()
-    //   const mockDirtyData = {
-    //     question: 'What is rocknRoll?',
-    //     correct_answer: 'FUN!',
-    //     incorrect_answers: ['good', 'bad', 'ok'],
-    //     all_answers: this.createAllAnswers('FUN!', ['good', 'bad', 'ok'] )
-    //   }
-    //   const expected = {
-    //     question: 'What is rocknRoll?',
-    //     correct_answer: 'FUN!',
-    //     incorrect_answers: ['good', 'bad', 'ok'],
-    //     all_answers: this.createAllAnswers('FUN!', ['good', 'bad', 'ok'] ),
-    //     your_answer: null
-    //   }
-    //   const result = wrapper.instance().restructureData(mockDirtyData)
-    //   expect(result).toEqual()
-    // });
+    it('restructureData', () => {
+      const mockDirtyData = { results: [{
+        question: 'What is rocknRoll?',
+        correct_answer: 'FUN!',
+        incorrect_answers: ['good', 'bad', 'ok'],
+      }]}
+      const expected = [{
+        question: 'What is rocknRoll?',
+        correct_answer: 'FUN!',
+        incorrect_answers: ['good', 'bad', 'ok'],
+        all_answers: ['bad', 'ok', 'FUN!', 'good' ],
+        your_answer: null
+      }]
+      const result = wrapper.instance().restructureData(mockDirtyData)
+      expect(result).toEqual(expected)
+    });
+
+    it('should remove weird characters as data is passed in', () => {
+      const dirtyData = 'Which English guitarist has the nickname &quot;Slowhand&quot;?'
+      const expected = 'Which English guitarist has the nickname Slowhand?'
+      const result = wrapper.instance().cleanData(dirtyData)
+      expect(result).toEqual(expected)
+    });
 
     it('when storeUserName is called, so should saveUserNameToStore with name', () => {
       const name = 'Bob'
@@ -115,13 +151,70 @@ describe('Intro', () => {
       expect(wrapper.state('name')).toEqual(expectedName)
     });
 
-    it('should call startGame when start game button is clicked', () => {
-    wrapper.instance().startGame = jest.fn();
-    wrapper.instance().forceUpdate()
-    wrapper.find('#start-game-button').simulate('click')
-    expect(wrapper.instance().startGame).toHaveBeenCalled()
+    it('should update state when onSubmit is called', () => {
+      const mockEvent = { preventDefault: jest.fn() }
+      const mockState = { formCompleted: true }
+      wrapper.setState(mockState)
+      wrapper.instance().onSubmit(mockEvent)
+      expect(wrapper.state('formCompleted')).toEqual(true)
     });
 
+    it('should call startGame when start game button is clicked', () => {
+      wrapper.instance().startGame = jest.fn();
+      wrapper.instance().forceUpdate()
+      wrapper.find('#start-game-button').simulate('click')
+      expect(wrapper.instance().startGame).toHaveBeenCalled()
+    });
   });
+});
+
+describe('mapDispatchToProps', () => {
+
+  it('should dispatch saveTriviaData with triviaData', () => {
+    const mockDispatch = jest.fn();
+    const triviaData = {
+      question: 'Which band is best?',
+      correct_answer: 'The Beatles',
+      incorrect_answers: ['The Who', 'Rush']
+    }
+    const actionToDispatch = saveTriviaData(triviaData)
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.saveTriviaDataToStore(triviaData)
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+
+  it('should dispatch saveUserName with userName', () => {
+    const mockDispatch = jest.fn();
+    const userName = 'Bob'
+    const actionToDispatch = saveUserName(userName)
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.saveUserNameToStore(userName)
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+
+  it('should dispatch saveDifficulty with difficulty', () => {
+    const mockDispatch = jest.fn();
+    const difficulty = 'easy'
+    const actionToDispatch = saveDifficulty(difficulty)
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.saveDifficultyToStore(difficulty)
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+
+  it('should dispatch clearCorrectQuestions', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = clearCorrectQuestions()
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.clearCorrectQuestions()
+    expect(mockDispatch).toHaveBeenCalled()
+  })
+
+  it('should dispatch clearIncorrectQuestions', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = clearIncorrectQuestions()
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.clearIncorrectQuestions()
+    expect(mockDispatch).toHaveBeenCalled()
+  })
 
 });
