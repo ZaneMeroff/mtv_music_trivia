@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Response from '../../Components/Response/Response';
 import { Round, mapDispatchToProps, mapStateToProps } from './Round';
 import { shallow } from 'enzyme';
 import { correctQuestions, incorrectQuestions} from '../../actions/index';
@@ -20,7 +21,9 @@ describe('Round', () => {
       addToIncorrectQuestions: jest.fn(),
     }
     wrapper = shallow(<Round
-      triviaData={{question: 'What is music?'}}
+      triviaData={{
+        question: 'What is music?',
+        correct_answer: 'life'}}
       {...mockProps}
       />);
   })
@@ -62,20 +65,19 @@ describe('Round', () => {
       });
 
       it('should call addToCorrectQuestions, reset state, and resetForNextRound if right', () => {
-        // * * * * * * * * * * * * * * * * * * * * * * * *
-        // * * * * * * * * * * * * * * * * * * * * * * * *
-        // * * * * * * * * * * * * * * * * * * * * * * * *
-        // * * * * * * * * * * * * * * * * * * * * * * * *
+        wrapper.instance().setState({selectedAnswer: 'life'})
+        wrapper.instance().submitAnswer()
+        expect(mockProps.addToCorrectQuestions).toHaveBeenCalled()
       });
 
       // it('should call addToCorrectQuestions, setState, and resetForNextRound if user selects wrong answer', () => {
       //   wrapper.instance().submitAnswer()
-      //   expect(mockProps.addToIncorrectQuestions).toHaveBeenCalledWith(wrapper.triviaData)
+      //   expect(mockProps.addToIncorrectQuestions).toHaveBeenCalled()
       //   expect(wrapper.state('rightORwrong')).toEqual(false)
       //   expect(wrapper.resetForNextRound).toHaveBeenCalled()
       // });
 
-    })
+    });
 
     it('should update state when resetForNextRound is called', () => {
       wrapper.instance().resetForNextRound()
@@ -83,29 +85,31 @@ describe('Round', () => {
     });
 
     // it('should call submitAnswer when submit answer button is clicked', () => {
-    // wrapper.instance().submitAnswer = jest.fn();
-    // wrapper.instance().forceUpdate()
-    // wrapper.find('.submit-answer-button').simulate('click')
-    // expect(wrapper.instance().submitAnswer).toHaveBeenCalled()
+    //   wrapper.instance().submitAnswer = jest.fn();
+    //   wrapper.instance().forceUpdate()
+    //   wrapper.find('.submit-answer-button').simulate('click')
+    //   expect(wrapper.instance().submitAnswer).toHaveBeenCalled()
     // });
 
   })
 
-  // describe('displayRightOrWrong', () => {
-  //   it('should return Response component with RIGHT! if rightORwrong is true', () => {
-  //     const mockRightOrWrong = true;
-  //     const result = wrapper.instance().displayRightOrWrong(mockRightOrWrong)
-  //     const expected = <Response text='RIGHT!'/>
-  //     expect(result).toEqual(expected)
-  //   });
-  //   it('should return Response component with WRONG! if rightORwrong is false', () => {
-  //     const mockRightOrWrong = false;
-  //     const result = wrapper.instance().displayRightOrWrong(mockRightOrWrong)
-  //     const expected = <Response text='WRONG!'/>
-  //     expect(result).toEqual(expected)
-  //   });
-  // })
+  describe('displayRightOrWrong', () => {
 
+    it('should return Response component with RIGHT! if rightORwrong is true', () => {
+      const mockRightOrWrong = true;
+      const result = wrapper.instance().displayRightOrWrong(mockRightOrWrong)
+      const expected = <Response text='RIGHT!'/>
+      expect(result).toEqual(expected)
+    });
+
+    it('should return Response component with WRONG! if rightORwrong is false', () => {
+      const mockRightOrWrong = false;
+      const result = wrapper.instance().displayRightOrWrong(mockRightOrWrong)
+      const expected = <Response text='WRONG!'/>
+      expect(result).toEqual(expected)
+    });
+
+  })
 
 })
 
