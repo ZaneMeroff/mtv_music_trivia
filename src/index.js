@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer } from './reducers/index';
 import './index.css';
-import App from './Containers/App/App.js';
+import App from './Components/App/App.js';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(rootReducer, composeWithDevTools());
@@ -19,6 +19,6 @@ ReactDOM.render(
   </BrowserRouter>
 </Provider>
 
-  , document.getElementById('root'));
+  ,document.getElementById('root'));
 
 serviceWorker.unregister();
