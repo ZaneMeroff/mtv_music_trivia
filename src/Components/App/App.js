@@ -30,5 +30,3 @@ export const App = () => {
 }
 
 export default App;
-
-// <Link to='/intro'><button id='redirect-button'>click here to redirect to intro</button></Link>

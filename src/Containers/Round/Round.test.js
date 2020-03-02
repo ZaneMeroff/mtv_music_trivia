@@ -137,6 +137,16 @@ describe('Round', () => {
     });
 
     it('should call submitAnswer when submit answer button is clicked', () => {
+      wrapper = shallow(<Round
+        triviaData={[{
+          question: 'What is music?',
+          correct_answer: 'life',
+          all_answers: ['life', 'fun', 'great', 'awesome']
+        }]}
+        {...mockProps}
+        />);
+      wrapper.setState({counter: 0})
+      wrapper.setState({rightORwrong: null})
       wrapper.instance().submitAnswer = jest.fn();
       wrapper.instance().forceUpdate()
       wrapper.find('.submit-answer-button').simulate('click')
