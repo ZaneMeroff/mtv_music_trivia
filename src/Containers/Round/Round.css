@@ -1,23 +1,20 @@
- /* #2196f3 */
-/* #ff64de */
-
 .answer-button,
 .question-container {
-  margin: 2% 0% 2% 0%;
-  height: 100px;
-  width: 90%;
   display: flex;
+  height: 100px;
   justify-content: center;
+  margin: 2% 0% 2% 0%;
+  width: 90%;
 }
 
 .answer-button {
-  font-size: 210%;
   border: none;
+  font-size: 210%;
 }
 
 .answer-button {
-  border-radius: 50px;
   background-color: #ff64de;
+  border-radius: 50px;
 }
 
 .answer-button:hover {
@@ -25,9 +22,9 @@
 }
 
 .question-container {
+  border-radius: 50px;
   height: auto;
   width: 90%;
-  border-radius: 50px;
 }
 
 .question-text {
@@ -37,13 +34,13 @@
 }
 
 .submit-answer-button {
-  width: 90%;
-  height: 100px;
-  border-radius: 50px;
-  font-size: 200%;
   background-color: #fff200;
+  border-radius: 50px;
   border: none;
+  font-size: 200%;
+  height: 100px;
   text-transform: uppercase;
+  width: 90%;
 }
 
 .submit-answer-button:hover {
@@ -51,10 +48,10 @@
 }
 
 .round{
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .active-button {
@@ -63,6 +60,6 @@
 }
 
 .round-error-message {
-  font-size: 250%;
   color: #fff200;
+  font-size: 250%;
 }
