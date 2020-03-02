@@ -9,7 +9,7 @@ This was my fourth (last) project from Mod3 at Turing School of Software and Des
 
 ### Directions for Use
 - On page load the user will see an intro screen asking for a name and difficulty.
-- After selecting `START GAME` the user will see their first of 10 question prompts with four possible answers.
+- After selecting `START GAME` the user will see their first of ten question prompts with four possible answers.
 - Selecting an answer, then selecting the `SUBMIT ANSWER` button will reveal a confirmation message letting the user know if they were correct or incorrect.
 - There is a header at the top of the screen that persists throughout the game displaying the current question, number of right and wrong responses, and the current difficulty.
 - At the end of the game the user will see their score given as a percentage as well as cards representing all missed questions with the user's answer and the correct answer.
@@ -37,7 +37,7 @@ This was my fourth (last) project from Mod3 at Turing School of Software and Des
 3. cd to the directory where you cloned the repo
 4. run `npm install`
 5. run `npm start`
-6. you should now be able to run the app within your browser from the url: `http://localhost:3000`
+6. you should now be able to run the app within your browser from the url: `http://localhost:3000/intro`
 
 ### This project was created by:
 Zachary Nemeroff https://github.com/ZaneMeroff
