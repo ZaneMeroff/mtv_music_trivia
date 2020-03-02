@@ -22,19 +22,18 @@ export class Round extends Component {
   }
 
   submitAnswer = () => {
-
-      if (!this.state.selectedAnswer) {
-        this.setState({errorMessage: 'You Must Select an Answer!'})
-      } else if (this.state.selectedAnswer === this.props.triviaData[this.state.counter].correct_answer) {
-        this.props.addToCorrectQuestions(this.props.triviaData[this.state.counter])
-        this.setState({rightORwrong: true})
-        this.resetForNextRound();
-      } else {
-        this.props.triviaData[this.state.counter].your_answer = this.state.selectedAnswer
-        this.props.addToIncorrectQuestions(this.props.triviaData[this.state.counter])
-        this.setState({rightORwrong: false})
-        this.resetForNextRound();
-      }
+    if (!this.state.selectedAnswer) {
+      this.setState({errorMessage: 'You Must Select an Answer!'})
+    } else if (this.state.selectedAnswer === this.props.triviaData[this.state.counter].correct_answer) {
+      this.props.addToCorrectQuestions(this.props.triviaData[this.state.counter])
+      this.setState({rightORwrong: true})
+      this.resetForNextRound();
+    } else {
+      this.props.triviaData[this.state.counter].your_answer = this.state.selectedAnswer
+      this.props.addToIncorrectQuestions(this.props.triviaData[this.state.counter])
+      this.setState({rightORwrong: false})
+      this.resetForNextRound();
+    }
   }
 
   resetForNextRound = () => {
@@ -96,7 +95,7 @@ Round.propTypes = {
   counter: PropTypes.number,
   updateSelectedAnswer: PropTypes.func,
   submitAnswer: PropTypes.func,
-  triviaData: PropTypes.object,
+  triviaData: PropTypes.array,
   resetForNextRound: PropTypes.func,
   displayRightOrWrong: PropTypes.func,
   addToCorrectQuestions: PropTypes.func,
