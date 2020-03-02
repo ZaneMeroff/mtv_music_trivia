@@ -96,7 +96,7 @@ Round.propTypes = {
   counter: PropTypes.number,
   updateSelectedAnswer: PropTypes.func,
   submitAnswer: PropTypes.func,
-  triviaData: PropTypes.array,
+  triviaData: PropTypes.object,
   resetForNextRound: PropTypes.func,
   displayRightOrWrong: PropTypes.func,
   addToCorrectQuestions: PropTypes.func,
