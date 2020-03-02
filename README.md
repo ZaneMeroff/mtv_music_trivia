@@ -2,7 +2,9 @@
 a totally rad music trivia game for mobile with an 80s theme!<br>
 <br>
 **link to live page:** https://mtv-music-trivia.herokuapp.com/intro<br>
-(because it is formatted for mobile, you may need to zoom out to play)
+(because it is formatted for mobile, you may need to zoom out to play)<br>
+<br>
+**link to mobile version:** https://mtv-music-trivia-mobile.herokuapp.com/intro
 
 ### Introduction
 This was my fourth (last) project from Mod3 at Turing School of Software and Design. I was given six days to create a unique React app utilizing React Router, React Redux, and the `fetch()` method to `GET` data from an API. I chose to create a music trivia game for mobile devices using the [Open Trivia Database API](https://opentdb.com) to populate the questions. A major learning goal for this project was to create a robust testing suite using Jest and Enzyme to ensure all components and user interactions function correctly.
