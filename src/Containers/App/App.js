@@ -13,7 +13,7 @@ export class App extends Component {
       <div id='outer-div'>
         <section id='game-container'>
           <Switch>
-            <Route exact path='/'>
+            <Route exact path='/intro'>
               <Intro />
             </Route>
             <Route exact path='/round'>

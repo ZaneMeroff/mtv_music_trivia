@@ -10,18 +10,18 @@ jest.mock('../../apiCalls')
 
 describe('Intro', () => {
 
-  let wrapper;
+  let wrapper, mockProps, mockState;
 
   beforeEach(() => {
 
-    const mockProps = {
+    mockProps = {
       clearCorrectQuestions: jest.fn(),
       clearIncorrectQuestions: jest.fn(),
       saveUserNameToStore: jest.fn(),
       saveDifficultyToStore: jest.fn()
     }
 
-    const mockState = {
+    mockState = {
       name: '',
       difficultyDropBox: 'easy',
       formCompleted: false
@@ -44,38 +44,39 @@ describe('Intro', () => {
       expect(wrapper.state()).toEqual(expectedState)
     })
 
-    // it('when startGame is envoked, so should clearCorrectQuestions, clearIncorrectQuestions, storeUserName, storeDifficulty, and getTriviaData', () => {
-    //   const name = 'Bob'
-    //   wrapper.instance().getTriviaData = jest.fn();
-    //
-    //   wrapper.instance().startGame()
-    //   console.log(wrapper.mockProps);
-    //   expect(mockProps.clearCorrectQuestions).toHaveBeenCalled();
-    //   expect(mockProps.clearIncorrectQuestions).toHaveBeenCalled();
-    //   expect(storeUserName).toHaveBeenCalledWith(name)
-    // })
+    it('when startGame is envoked, so should clearCorrectQuestions, clearIncorrectQuestions, storeUserName, storeDifficulty, and getTriviaData', () => {
+      wrapper.instance().getTriviaData = jest.fn();
+      wrapper.instance().storeUserName = jest.fn();
+      wrapper.instance().storeDifficulty = jest.fn();
+      wrapper.instance().startGame()
+      expect(mockProps.clearCorrectQuestions).toHaveBeenCalled();
+      expect(mockProps.clearIncorrectQuestions).toHaveBeenCalled();
+      expect(wrapper.instance().storeUserName).toHaveBeenCalledWith('')
+      expect(wrapper.instance().storeDifficulty).toHaveBeenCalledWith('easy')
+      expect(wrapper.instance().getTriviaData).toHaveBeenCalled();
+    })
 
-    // it('when getTriviaData is called, so should fetchTriviaData', () => {
-    //   let mockResponse = [{
-    //       category: "Entertainment: Music",
-    //       type: "multiple",
-    //       difficulty: "easy",
-    //       question: "Who had a 1983 hit with the song &#039;Africa&#039;?",
-    //       correct_answer: "Toto",
-    //       incorrect_answers: [
-    //         "Foreigner",
-    //         "Steely Dan",
-    //         "Journey"]
-    //     }]
-    //   fetchTriviaData = jest.fn().mockImplementation(() => {
-    //     return Promise.resolve({
-    //       ok: true,
-    //       json: () => Promise.resolve(mockResponse)
-    //     });
-    //   });
-    //   wrapper.instance().getTriviaData()
-    //   expect(fetchTriviaData).toHaveBeenCalledWith('easy')
-    // });
+    it('when getTriviaData is called, so should fetchTriviaData', () => {
+      let mockResponse = [{
+          category: "Entertainment: Music",
+          type: "multiple",
+          difficulty: "easy",
+          question: "Who had a 1983 hit with the song &#039;Africa&#039;?",
+          correct_answer: "Toto",
+          incorrect_answers: [
+            "Foreigner",
+            "Steely Dan",
+            "Journey"]
+        }]
+      fetchTriviaData.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        });
+      });
+      wrapper.instance().getTriviaData()
+      expect(fetchTriviaData).toHaveBeenCalledWith('easy')
+    });
 
     it('creatAllAnswers should call shuffleAnswers with allAnswers', () => {
       const mockCorrectAnswer = 'A'
