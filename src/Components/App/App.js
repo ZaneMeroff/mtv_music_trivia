@@ -9,7 +9,6 @@ import './App.css';
 
 export const App = () => {
   return (
-    <div id='outer-div'>
       <section id='game-container'>
         <Switch>
           <Route exact path='/intro'>
@@ -26,7 +25,6 @@ export const App = () => {
           <Response text='Page Not Found!'/>
         </Switch>
       </section>
-    </div>
   )
 }
 
