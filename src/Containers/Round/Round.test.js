@@ -6,10 +6,23 @@ import { correctQuestions, incorrectQuestions} from '../../actions/index';
 
 describe('Round', () => {
 
-  let wrapper;
+  let wrapper, mockProps, mockState;
 
   beforeEach(() => {
-    wrapper = shallow(<Round triviaData={{question: 'What is music?'}}/>);
+    mockState = {
+      selectedAnswer: null,
+      errorMessage: '',
+      rightORwrong: null,
+      counter: 0
+    }
+    mockProps = {
+      addToCorrectQuestions: jest.fn(),
+      addToIncorrectQuestions: jest.fn(),
+    }
+    wrapper = shallow(<Round
+      triviaData={{question: 'What is music?'}}
+      {...mockProps}
+      />);
   })
 
   describe('Round container/component', () => {
@@ -38,22 +51,29 @@ describe('Round', () => {
     describe('submitAnswer', () => {
 
       it('should update state is no selected answer', () => {
-      // * * * * * * * * * * * * * * * * * * * * * * * *
-      // * * * * * * * * * * * * * * * * * * * * * * * *
-      // * * * * * * * * * * * * * * * * * * * * * * * *
+        const expectedState = {
+          selectedAnswer: null,
+          errorMessage: 'You Must Select an Answer!',
+          rightORwrong: null,
+          counter: 0
+        }
+        wrapper.instance().submitAnswer()
+        expect(wrapper.state()).toEqual(expectedState)
       });
 
       it('should call addToCorrectQuestions, reset state, and resetForNextRound if right', () => {
-      // * * * * * * * * * * * * * * * * * * * * * * * *
-      // * * * * * * * * * * * * * * * * * * * * * * * *
-      // * * * * * * * * * * * * * * * * * * * * * * * *
+        // * * * * * * * * * * * * * * * * * * * * * * * *
+        // * * * * * * * * * * * * * * * * * * * * * * * *
+        // * * * * * * * * * * * * * * * * * * * * * * * *
+        // * * * * * * * * * * * * * * * * * * * * * * * *
       });
 
-      it('should do the 3rd thing...', () => {
-      // * * * * * * * * * * * * * * * * * * * * * * * *
-      // * * * * * * * * * * * * * * * * * * * * * * * *
-      // * * * * * * * * * * * * * * * * * * * * * * * *
-      });
+      // it('should call addToCorrectQuestions, setState, and resetForNextRound if user selects wrong answer', () => {
+      //   wrapper.instance().submitAnswer()
+      //   expect(mockProps.addToIncorrectQuestions).toHaveBeenCalledWith(wrapper.triviaData)
+      //   expect(wrapper.state('rightORwrong')).toEqual(false)
+      //   expect(wrapper.resetForNextRound).toHaveBeenCalled()
+      // });
 
     })
 
@@ -61,13 +81,6 @@ describe('Round', () => {
       wrapper.instance().resetForNextRound()
       expect(wrapper.state('errorMessage')).toEqual('')
     });
-
-    // it('should call updateSelectedAnswer when an answer button is clicked', () => {
-    // wrapper.instance().updateSelectedAnswer = jest.fn();
-    // wrapper.instance().forceUpdate()
-    // wrapper.find('.answer-button').simulate('click')
-    // expect(wrapper.instance().updateSelectedAnswer).toHaveBeenCalled()
-    // });
 
     // it('should call submitAnswer when submit answer button is clicked', () => {
     // wrapper.instance().submitAnswer = jest.fn();
@@ -92,6 +105,7 @@ describe('Round', () => {
   //     expect(result).toEqual(expected)
   //   });
   // })
+
 
 })
 
