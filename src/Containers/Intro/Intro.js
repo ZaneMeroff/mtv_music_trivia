@@ -100,8 +100,8 @@ export class Intro extends Component {
   render() {
     return (
       <form id='intro-container' onSubmit={this.onSubmit}>
-        {this.state.formCompleted && <Redirect to={{pathname: '/round'}}/>}
-        <img src={ logo } id='large-logo' alt='mtv trivia logo'/>
+        {this.state.formCompleted && <Redirect to={{pathname: '/round'}} />}
+        <img src={ logo } id='large-logo' alt='mtv trivia logo' />
         <h1 id='trivia-text'>T R I V I A</h1>
         <input
           required
@@ -112,7 +112,7 @@ export class Intro extends Component {
           value={this.state.name}
           onChange={this.updateState}
         />
-        <div id='difficulty-container'>
+        <div id='difficulty-dropbox-container'>
           <p id='difficulty-text'>difficulty:</p>
           <select id='difficulty-dropbox' onChange={e => this.updateDropBoxState(e.target.value)}>
             <option value='easy'>easy</option>
