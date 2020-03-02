@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Result.css';
 import PropTypes from 'prop-types';
 
-export class Result extends Component {
-  render() {
-    let missedQuestions = this.props.wrong.map(q => {
+export const Result = props => {
+    let missedQuestions = props.wrong.map(q => {
       return (
         <div key={q.question} className='missed-question-container'>
           <p className='missed-question-text'>{q.question}</p>
@@ -17,15 +16,14 @@ export class Result extends Component {
     })
     return (
       <div className='result-contianer'>
-        <p className='result-text'>way to go <span id='user-input'>{this.props.username}!</span></p>
-        <p className='result-text'>score: <span id='user-input'>{this.props.right.length}0%</span></p>
-        <Link to={'/'}><button className='new-game-button'>new game</button></Link>
+        <p className='result-text'>way to go <span id='user-input'>{props.username}!</span></p>
+        <p className='result-text'>score: <span id='user-input'>{props.right.length}0%</span></p>
+        <Link to={'/intro'}><button className='new-game-button'>new game</button></Link>
         <div className='missed-question-outer-container'>
           {missedQuestions}
         </div>
       </div>
     )
-  }
 }
 
 export const mapStateToProps = (state) => ({
