@@ -13,7 +13,7 @@
   color: #ff64de;
   font-size: 400%;
   font-weight: bolder;
-  text-shadow: 2px 2px 2px #000;
+  text-shadow: 3px 3px 3px #fff200;
 }
 
 #intro-container {
@@ -48,6 +48,7 @@
   padding: 0%;
   text-transform: uppercase;
   width: 527px;
+  color: #ff64de;
 }
 
 #start-game-button:hover,
@@ -57,6 +58,7 @@
 
 #difficulty-text {
   font-size: 200%;
+  color: #fff200;
 }
 
 #difficulty-dropbox {
