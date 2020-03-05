@@ -103,6 +103,7 @@ export class Intro extends Component {
         {this.state.formCompleted && <Redirect to={{pathname: '/round'}} />}
         <img src={ logo } id='large-logo' alt='mtv trivia logo' />
         <h1 id='trivia-text'>T R I V I A</h1>
+        <h1 id='my-name'>by Zachary Nemeroff</h1>
         <input
           required
           id='name-input'

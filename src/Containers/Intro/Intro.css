@@ -11,8 +11,9 @@
 
 #trivia-text {
   color: #ff64de;
-  font-size: 350%;
+  font-size: 400%;
   font-weight: bolder;
+  text-shadow: 2px 2px 2px #000;
 }
 
 #intro-container {
@@ -38,6 +39,7 @@
 #name-input {
   padding: 0%;
   width: 520px;
+  margin-top: 8%;
 }
 
 #start-game-button {
@@ -67,4 +69,10 @@
 #difficulty-dropbox-container {
   align-items: center;
   display: flex;
+}
+
+#my-name {
+  font-size: 200%;
+  color: #fff200;
+  margin: -7% 0% 2% 0%;
 }
