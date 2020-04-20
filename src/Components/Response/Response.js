@@ -2,10 +2,10 @@ import React from 'react';
 import './Response.css';
 import PropTypes from 'prop-types';
 
-const Response = props => {
+const Response = ({text}) => {
     return (
       <div className='response-contianer'>
-        <p className='response-text'>{props.text}</p>
+        <p className='response-text'>{text}</p>
       </div>
     )
 }
