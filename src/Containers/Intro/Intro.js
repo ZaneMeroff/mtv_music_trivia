@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { fetchTriviaData } from '../../apiCalls';
 import { connect } from 'react-redux';
@@ -7,61 +7,43 @@ import './Intro.css'
 import logo from '../../assets/mtv_logo_yellow.png';
 import PropTypes from 'prop-types';
 
-export class Intro extends Component {
-  constructor(props) {
-    super(props);
-    this.state =
-    {
-      name: '',
-      difficultyDropBox: 'easy',
-      formCompleted: false
+export const Intro = (props) => {
+    const [name, setName] = useState('');
+    const [difficultyDropBox, setDifficultyDropBox] = useState('easy');
+    const [formCompleted, setFormCompleted] = useState(false);
+
+    const getTriviaData = () => {
+      fetchTriviaData(difficultyDropBox)
+        .then(unstructuredData => restructureData(unstructuredData))
+        .then(restructuredData => props.saveTriviaDataToStore(restructuredData))
     }
-  }
 
-  startGame = () => {
-    this.props.clearCorrectQuestions();
-    this.props.clearIncorrectQuestions();
-    this.storeUserName(this.state.name);
-    this.storeDifficulty(this.state.difficultyDropBox)
-    this.getTriviaData();
-  }
-
-  getTriviaData = () => {
-    fetchTriviaData(this.state.difficultyDropBox)
-      .then(unstructuredData => this.restructureData(unstructuredData))
-      .then(restructuredData => this.props.saveTriviaDataToStore(restructuredData))
-  }
-
-  createAllAnswers = (correctAnswer, incorrectAnswers) => {
-    let allAnswers = [...incorrectAnswers, correctAnswer]
-    return this.shuffleAnswers(allAnswers)
-  }
-
-  shuffleAnswers = a => {
-    let j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
+    const startGame = () => {
+      props.clearCorrectQuestions();
+      props.clearIncorrectQuestions();
+      storeUserName(name);
+      storeDifficulty(difficultyDropBox)
+      getTriviaData();
     }
-    return a;
-  }
+  
+    const createAllAnswers = (correctAnswer, incorrectAnswers) => {
+      let allAnswers = [...incorrectAnswers, correctAnswer]
+      return shuffleAnswers(allAnswers)
+    }
 
-  restructureData = data => {
-    return data.results.map(q => {
-      let allAnswers = this.createAllAnswers(q.correct_answer, q.incorrect_answers)
-      return {
-        question: this.cleanData(q.question),
-        correct_answer: this.cleanData(q.correct_answer),
-        incorrect_answers: q.incorrect_answers,
-        all_answers: allAnswers.map(answer => this.cleanData(answer)),
-        your_answer: null
+    const shuffleAnswers = a => {
+      let j, x, i;
+      for (i = a.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          x = a[i];
+          a[i] = a[j];
+          a[j] = x;
       }
-    })
-  }
+      return a;
+    }
 
-  cleanData = data => {
+
+  const cleanData = data => {
     if (data.includes('&quot;') ||
         data.includes('&Uuml;') ||
         data.includes('&#039;') ||
@@ -76,31 +58,34 @@ export class Intro extends Component {
     }
   }
 
-  storeUserName = name => {
-    this.props.saveUserNameToStore(name);
-  }
+    const storeUserName = name => {
+      props.saveUserNameToStore(name);
+    }
 
-  storeDifficulty = difficulty => {
-    this.props.saveDifficultyToStore(difficulty);
-  }
-
-  updateDropBoxState = difficulty => {
-    this.setState({difficultyDropBox: difficulty});
-  }
-
-  updateState = e => {
-    this.setState( {[e.target.name]: e.target.value} );
-  }
-
-  onSubmit = e => {
-    e.preventDefault();
-    this.setState({ formCompleted: true })
-  }
-
-  render() {
+    const storeDifficulty = difficulty => {
+      props.saveDifficultyToStore(difficulty);
+    }
+  
+    const onSubmit = event => {
+      event.preventDefault();
+      setFormCompleted(true);
+    }
+    const restructureData = ({results}) => {
+      return results.map(({correct_answer, incorrect_answers, question}) => {
+        let allAnswers = createAllAnswers(correct_answer, incorrect_answers)
+        return {
+          question: cleanData(question),
+          correct_answer: cleanData(correct_answer),
+          incorrect_answers: incorrect_answers,
+          all_answers: allAnswers.map(answer => cleanData(answer)),
+          your_answer: null
+        }
+      })
+    }
+  
     return (
-      <form id='intro-container' onSubmit={this.onSubmit}>
-        {this.state.formCompleted && <Redirect to={{pathname: '/round'}} />}
+      <form id='intro-container' onSubmit={onSubmit}>
+        {formCompleted && <Redirect to={{pathname: '/round'}} />}
         <img src={ logo } id='large-logo' alt='mtv trivia logo' />
         <h1 id='trivia-text'>T R I V I A</h1>
         <input
@@ -110,21 +95,20 @@ export class Intro extends Component {
           maxLength='10'
           placeholder='enter your name...'
           name='name'
-          value={this.state.name}
-          onChange={this.updateState}
+          value={name}
+          onChange={e => setName(e.target.value)}
         />
         <div id='difficulty-dropbox-container'>
           <p id='difficulty-text'>difficulty:</p>
-          <select id='difficulty-dropbox' onChange={e => this.updateDropBoxState(e.target.value)}>
+          <select id='difficulty-dropbox' onChange={e => setDifficultyDropBox(e.target.value)}>
             <option value='easy'>easy</option>
             <option value='medium'>medium</option>
             <option value='hard'>hard</option>
           </select>
         </div>
-        <button type='submit' id='start-game-button' onClick={this.startGame}>start game</button>
+        <button type='submit' id='start-game-button' onClick={startGame}>start game</button>
       </form>
     )
-  }
 }
 
 export const mapDispatchToProps = (dispatch) => ({

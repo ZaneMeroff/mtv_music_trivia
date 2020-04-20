@@ -44,5 +44,14 @@ This was my fourth (last) project from Mod3 at Turing School of Software and Des
 5. run `npm start`
 6. you should now be able to run the app within your browser from the url: `http://localhost:3000/intro`
 
+### How to run on Docker
+1. Clone this repo
+2. Make sure you don't have any application listening on port 3000
+3. Make sure you have docker installed on your machine
+4. run `docker build -t trivia-music .` in the root directory
+5. run `docker run -d -it --rm --name trivia-app -p 3000:3000 trivia-music` for use or `docker run -d -it --rm --name trivia-app --mount type=bind,source="$(pwd)"/src,target=/home/node/code/src -p 3000:3000 trivia-music` for development purposes
+6. You will be able to run the app within your brows from the url: `http://localhost:3000/intro`
+
+
 ### This project was created by:
 Zachary Nemeroff https://github.com/ZaneMeroff
