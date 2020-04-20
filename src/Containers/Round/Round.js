@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Response from '../../Components/Response/Response';
 import { Redirect } from 'react-router-dom';
 import { correctQuestions, incorrectQuestions } from '../../actions';
@@ -6,76 +6,80 @@ import { connect } from 'react-redux';
 import './Round.css';
 import PropTypes from 'prop-types';
 
-export class Round extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedAnswer: null,
-      errorMessage: '',
-      rightORwrong: null,
-      counter: 0
-    }
+export const Round = ({triviaData, addToCorrectQuestions, addToIncorrectQuestions}) => {
+  const [counter, setCounter] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [rightORwrong, setRightOrWrong] = useState(null);
+
+  const resetForNextRound = () => {
+    setTimeout(
+      () => {
+        setCounter(counter+1);
+        setRightOrWrong(null);
+        setSelectedAnswer(null);
+        setErrorMessage('');
+      }, 500);
   }
 
-  updateSelectedAnswer = answer => {
-    this.setState({selectedAnswer: answer })
+  const displayRightOrWrong = answer => {
+      return <Response text={ answer === true ? 'RIGHT!' : 'WRONG!'}/>
   }
 
-  submitAnswer = () => {
-    if (!this.state.selectedAnswer) {
-      this.setState({errorMessage: 'You Must Select an Answer!'})
-    } else if (this.state.selectedAnswer === this.props.triviaData[this.state.counter].correct_answer) {
-      this.props.addToCorrectQuestions(this.props.triviaData[this.state.counter])
-      this.setState({rightORwrong: true})
-      this.resetForNextRound();
+
+  const submitAnswer = () => {
+    if (!selectedAnswer) {
+      setErrorMessage('You must select an answer');
     } else {
-      this.props.triviaData[this.state.counter].your_answer = this.state.selectedAnswer
-      this.props.addToIncorrectQuestions(this.props.triviaData[this.state.counter])
-      this.setState({rightORwrong: false})
-      this.resetForNextRound();
+      const answer = selectedAnswer === triviaData[counter].correct_answer;
+      if (answer) {
+        addToCorrectQuestions(triviaData[counter])
+      } else {
+        triviaData[counter].your_answer = selectedAnswer;
+        addToIncorrectQuestions(triviaData[counter])
+      }
+      setRightOrWrong(answer);
+      resetForNextRound();
     }
   }
 
-  resetForNextRound = () => {
-    setTimeout(() => this.setState({counter: this.state.counter+1, rightORwrong: null, selectedAnswer: null, errorMessage: ''}), 500);
+
+
+  if (counter > 9) {
+    return (
+        <Redirect to='/result' />
+    );
   }
 
-  displayRightOrWrong = rightORwrong => {
-    if (rightORwrong) {
-      return <Response text='RIGHT!'/>
-    } else {
-      return <Response text='WRONG!'/>
-    }
-  }
-
-  render() {
-
-    if (this.state.counter > 9) {
-      return <Redirect to='/result' />
-    }
-
-    if (!this.props.triviaData.length) {
-        return <Response text='loading...'/>
-
-    } else if (this.state.rightORwrong === null) {
-
-      let buttons = this.props.triviaData[this.state.counter].all_answers.map(button => {
-        return <button onClick={e => this.updateSelectedAnswer(e.target.value)} value={button} key={button} className={button === this.state.selectedAnswer ? 'answer-button active-button' : 'answer-button'}>{button}</button>
-      })
-
+  if (!triviaData.length) {
+    return (
+      <Response text='loading...'/>
+    );
+  } else if (rightORwrong === null) {
+    let buttons = triviaData[counter].all_answers.map(button => {
       return (
-        <div className='round'>
-          <div className='question-container'>
-            <p className='question-text'>{this.props.triviaData[this.state.counter].question}</p>
-          </div>
-          {buttons}
-          <p className='round-error-message'>{this.state.errorMessage}</p>
-          <button className='submit-answer-button' onClick={this.submitAnswer}>submit answer</button>
+          <button 
+            onClick={e => setSelectedAnswer(e.target.value)} 
+            value={button} 
+            key={button} 
+            className={button === selectedAnswer ? 'answer-button active-button' : 'answer-button'}
+          >
+              {button}
+          </button>
+        )
+    });
+    return (
+      <div className='round'>
+        <div className='question-container'>
+          <p className='question-text'>{triviaData[counter].question}</p>
         </div>
-      )
-    } else if (this.state.rightORwrong !== null) {
-      return this.displayRightOrWrong(this.state.rightORwrong)
-    }
+        {buttons}
+        <p className='round-error-message'>{errorMessage}</p>
+        <button className='submit-answer-button' onClick={submitAnswer}>submit answer</button>
+      </div>
+    );
+  } else if (rightORwrong !== null) {
+    return displayRightOrWrong(rightORwrong)
   }
 }
 
