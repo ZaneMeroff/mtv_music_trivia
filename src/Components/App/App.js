@@ -7,6 +7,7 @@ import Round from '../../Containers/Round/Round';
 import './App.css';
 
 export const App = () => {
+  
   return (
     <div id='outer-div'>
       <section id='game-container'>

@@ -37,15 +37,27 @@ export class Round extends Component {
   }
 
   resetForNextRound = () => {
-    setTimeout(() => this.setState({counter: this.state.counter+1, rightORwrong: null, selectedAnswer: null, errorMessage: ''}), 500);
+    setTimeout(() => this.setState({counter: this.state.counter+1, rightORwrong: null, selectedAnswer: null, errorMessage: ''}), 800);
   }
 
   displayRightOrWrong = rightORwrong => {
     if (rightORwrong) {
-      return <Response text='RIGHT!'/>
+      return <Response text={this.positiveWords()}/>
     } else {
-      return <Response text='WRONG!'/>
+      return <Response text={this.negativeWords()}/>
     }
+  }
+
+  positiveWords = () => {
+    let words = ['RAD!', 'RIGHT ON!', 'COWABUNGA!', 'GNARLY!', 'BODACIOUS!', 'TOTALLY!', 'TUBULAR!', 'SUPER FLY!', 'SWEET!', 'DOPE!']
+    let randomNum = Math.floor(Math.random() * 10)
+    return words[randomNum]
+  }
+
+  negativeWords = () => {
+    let words = ['bummer...', 'lame...', 'no dice...', 'what a drag...', 'barf...', 'bogus...']
+    let randomNum = Math.floor(Math.random() * 6)
+    return words[randomNum]
   }
 
   render() {
