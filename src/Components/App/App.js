@@ -7,12 +7,11 @@ import Round from '../../Containers/Round/Round';
 import './App.css';
 
 export const App = () => {
-  
   return (
     <div id='outer-div'>
       <section id='game-container'>
         <Switch>
-          <Route exact path='/intro'>
+          <Route exact path='/'>
             <Intro />
           </Route>
           <Route exact path='/round'>
@@ -23,7 +22,7 @@ export const App = () => {
             <Header />
             <Result />
           </Route>
-          <Redirect to='/intro'/>
+          <Redirect to='/'/>
         </Switch>
       </section>
     </div>
