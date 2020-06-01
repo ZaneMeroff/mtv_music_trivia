@@ -108,7 +108,7 @@ export class Intro extends Component {
           required
           id='name-input'
           type='text'
-          maxLength='10'
+          maxLength='15'
           placeholder='enter your name...'
           name='name'
           value={this.state.name}
