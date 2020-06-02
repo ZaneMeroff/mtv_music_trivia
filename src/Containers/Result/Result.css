@@ -3,28 +3,29 @@
   display: flex;
   flex-direction: column;
   height: 85%;
-  justify-content: center;
+  padding-top: 30px;
 }
 
-.result-text{
-  font-size: 300%;
+.result-text {
+  font-size: 120%;
   margin: 1%;
   text-transform: uppercase;
 }
 
 .new-game-button {
   background-color: #fff200;
-  border-radius: 50px;
   border: none;
-  font-size: 300%;
-  height: 100px;
+  font-size: 120%;
+  height: 60px;
+  border-radius: 30px;
   margin-top: 10%;
   text-transform: uppercase;
-  width: 527px;
+  width: 200px;
 }
 
 .new-game-button:hover {
   cursor: pointer;
+  border: 5px solid #ff64de;
 }
 
 #user-input {
@@ -35,9 +36,9 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 70%;
   overflow-y: scroll;
-  padding: 5%;
+  padding-top: 10px 10px 0px 10px;
 }
 
 .missed-question-container {
@@ -49,11 +50,29 @@
 }
 
 .missed-question-text {
-  font-size: 200%;
-  padding: 2%;
+  font-size: 120%;
+  padding: 1%;
   text-align: center;
 }
 
 .missed-question-data {
   color: #fff200;
+}
+
+@media only screen and (max-width: 490px) {
+
+  .result-text {
+    font-size: 90%;
+  }
+
+  .missed-question-text {
+    font-size: 90%;
+  }
+
+  .new-game-button {
+    font-size: 90%;
+    height: 40px;
+    border-radius: 20px;
+  }
+
 }
