@@ -13,7 +13,7 @@ exports[`Intro Intro container/component should match the snapshot 1`] = `
   <h1
     id="trivia-text"
   >
-    T R I V I A
+    trivia
   </h1>
   <h1
     id="my-name"
@@ -22,7 +22,7 @@ exports[`Intro Intro container/component should match the snapshot 1`] = `
   </h1>
   <input
     id="name-input"
-    maxLength="10"
+    maxLength="15"
     name="name"
     onChange={[Function]}
     placeholder="enter your name..."

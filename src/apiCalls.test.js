@@ -41,14 +41,14 @@ describe('getMoviesData', () => {
     expect(fetchTriviaData()).rejects.toEqual(Error('200 status code not found: getTriviaData throw error'))
   })
 
-  it('should return an error if promise is rejected w', () => {
+  it('should return an error if promise is rejected', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false,
         json: () => Promise.resolve(mockResponse)
       });
     });
-    expect(fetchTriviaData()).rejects.toEqual(Error('getTriviaData throw error'))
+    expect(fetchTriviaData()).rejects.toEqual(Error('200 status code not found: getTriviaData throw error'))
   });
 
 });
