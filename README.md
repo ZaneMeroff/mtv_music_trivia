@@ -1,11 +1,11 @@
 # MTV MUSIC TRIVIA! 👨‍🎤
-a totally rad music trivia game for mobile with an 80s theme!<br>
+a totally rad music trivia game for mobile with an 80s theme!
 
 #### Link to Live Site
 https://zanemeroff.github.io/mtv_music_trivia
 
 #### Introduction
-This was my fourth (last) project from Mod3 at Turing School of Software and Design. I was given six days to create a unique React app utilizing React Router, React Redux, and the `fetch()` method to `GET` data from an API. I chose to create a music trivia game for mobile devices using the [Open Trivia Database API](https://opentdb.com) to populate the questions. I created a robust testing suite using Jest and Enzyme to unit test all components and user interactions. The app boasts 97% testing coverage.
+This was my fourth (last) project from Mod3 at Turing School of Software and Design. I was given six days to create a unique React app utilizing React Router, React Redux, and the `fetch()` method to `GET` data from an API. I chose to create a mobile friendly music trivia game using the [Open Trivia Database API](https://opentdb.com) to populate the questions. I created a robust testing suite using Jest and Enzyme to unit test all components and user interactions. The app boasts 97% testing coverage across 62 individual tests.
 
 #### Screenshots
 ![screenshot 1](https://user-images.githubusercontent.com/53405028/75648980-f51f7b00-5c0e-11ea-9c84-0b985f7ad267.png)
