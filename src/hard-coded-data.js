@@ -1,4 +1,4 @@
-{
+export const backupTriviaData = {
   response_code: 0,
   results: [{
       category: "Entertainment: Music",
