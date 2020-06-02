@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/mtv_music_trivia/static/css/main.9a603abc.chunk.css",
+    "main.js": "/mtv_music_trivia/static/js/main.97312059.chunk.js",
+    "main.js.map": "/mtv_music_trivia/static/js/main.97312059.chunk.js.map",
+    "runtime-main.js": "/mtv_music_trivia/static/js/runtime-main.0bde4636.js",
+    "runtime-main.js.map": "/mtv_music_trivia/static/js/runtime-main.0bde4636.js.map",
+    "static/js/2.cb5deb73.chunk.js": "/mtv_music_trivia/static/js/2.cb5deb73.chunk.js",
+    "static/js/2.cb5deb73.chunk.js.map": "/mtv_music_trivia/static/js/2.cb5deb73.chunk.js.map",
+    "index.html": "/mtv_music_trivia/index.html",
+    "precache-manifest.0f1a600d620e898e630ac21c545912d9.js": "/mtv_music_trivia/precache-manifest.0f1a600d620e898e630ac21c545912d9.js",
+    "service-worker.js": "/mtv_music_trivia/service-worker.js",
+    "static/css/main.9a603abc.chunk.css.map": "/mtv_music_trivia/static/css/main.9a603abc.chunk.css.map",
+    "static/js/2.cb5deb73.chunk.js.LICENSE.txt": "/mtv_music_trivia/static/js/2.cb5deb73.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/mtv_music_trivia/static/media/liquid_background.f8ca0da6.jpeg",
+    "static/media/mtv_logo_pink.png": "/mtv_music_trivia/static/media/mtv_logo_pink.9ff1150a.png",
+    "static/media/mtv_logo_yellow.png": "/mtv_music_trivia/static/media/mtv_logo_yellow.0c1ce2fe.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0bde4636.js",
+    "static/js/2.cb5deb73.chunk.js",
+    "static/css/main.9a603abc.chunk.css",
+    "static/js/main.97312059.chunk.js"
+  ]
+}
