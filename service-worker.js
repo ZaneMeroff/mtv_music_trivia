@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/mtv_music_trivia/precache-manifest.9991161111a77fe3ea5363aff7373866.js"
+  "/mtv_music_trivia/precache-manifest.f8c71f1922e73875494d80e0cc050b71.js"
 );
 
 self.addEventListener('message', (event) => {
