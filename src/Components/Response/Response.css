@@ -9,6 +9,14 @@
 
 .response-text {
   color: #fff200;
-  font-size: 600%;
+  font-size: 300%;
   transform: rotate(-20deg);
+}
+
+@media only screen and (max-width: 490px) {
+
+  .response-text {
+    font-size: 200%;
+  }
+
 }

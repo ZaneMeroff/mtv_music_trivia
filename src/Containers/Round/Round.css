@@ -1,53 +1,58 @@
 .answer-button,
 .question-container {
   display: flex;
-  height: 100px;
+  align-items: center;
+  height: 60px;
   justify-content: center;
   margin: 2% 0% 2% 0%;
-  width: 90%;
+  width: 75%;
 }
 
 .answer-button {
   border: none;
-  font-size: 210%;
+  font-size: 120%;
 }
 
 .answer-button {
   background-color: #ff64de;
-  border-radius: 50px;
+  border-radius: 30px;
 }
 
 .answer-button:hover {
   cursor: pointer;
+  border: 5px solid #fff200;
+  color: #FFF;
 }
 
 .question-container {
+  margin-top: 30px;
   border-radius: 50px;
   height: auto;
   width: 90%;
 }
 
 .question-text {
-  font-size: 250%;
+  font-size: 120%;
   padding: 1%;
   text-align: center;
 }
 
 .submit-answer-button {
   background-color: #fff200;
-  border-radius: 50px;
+  border-radius: 30px;
   border: none;
-  font-size: 200%;
-  height: 100px;
+  font-size: 120%;
+  height: 60px;
   text-transform: uppercase;
-  width: 90%;
+  width: 75%;
 }
 
 .submit-answer-button:hover {
   cursor: pointer;
+  border: 5px solid #ff64de;
 }
 
-.round{
+.round {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -61,5 +66,24 @@
 
 .round-error-message {
   color: #fff200;
-  font-size: 250%;
+  font-size: 100%;
+}
+
+@media only screen and (max-width: 490px) {
+
+  .answer-button,
+  .question-container {
+    height: 40px;
+    font-size: 90%;
+  }
+
+  .submit-answer-button {
+    height: 40px;
+    font-size: 90%;
+  }
+
+  .question-text {
+    font-size: 100%;
+  }
+
 }

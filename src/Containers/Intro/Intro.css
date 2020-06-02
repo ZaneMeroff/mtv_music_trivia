@@ -4,16 +4,19 @@
 }
 
 #large-logo {
-  height: 300px;
+  height: 150px;
   margin-left: 5%;
-  width: 400px;
+  width: 180px;
 }
 
 #trivia-text {
   color: #ff64de;
-  font-size: 400%;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-size: 250%;
   font-weight: bolder;
   text-shadow: 3px 3px 3px #fff200;
+  margin-bottom: 5px;
 }
 
 #intro-container {
@@ -21,24 +24,24 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: center;
+  padding-top: 70px;
 }
 
 #difficulty-dropbox,
 #start-game-button,
 #name-input {
   border-radius: 50px;
-  font-size: 200%;
-  height: 100px;
-  margin: 2% 0% 2% 0%;
+  font-size: 100%;
+  height: 50px;
+  margin: 10px 00px;
   padding-left: 5%;
   text-align: center;
-  width: 500px;
+  width: 60%;
+  border: none;
 }
 
 #name-input {
   padding: 0%;
-  width: 520px;
   margin-top: 8%;
 }
 
@@ -47,25 +50,26 @@
   border: none;
   padding: 0%;
   text-transform: uppercase;
-  width: 527px;
   color: #ff64de;
 }
 
 #start-game-button:hover,
 #difficulty-dropbox:hover {
   cursor: pointer;
+  border: 5px solid #ff64de;
+  color: #000;
 }
 
 #difficulty-text {
-  font-size: 200%;
+  font-size: 120%;
   color: #fff200;
 }
 
 #difficulty-dropbox {
-  height: 60px;
   margin-left: 6%;
   text-transform: lowercase;
-  width: 200px;
+  width: 130px;
+  border: 5px solid #FFF;
 }
 
 #difficulty-dropbox-container {
@@ -74,7 +78,26 @@
 }
 
 #my-name {
-  font-size: 200%;
+  font-size: 100%;
   color: #fff200;
-  margin: -7% 0% 2% 0%;
+  margin-top: 0px;
+}
+
+@media only screen and (max-width: 490px) {
+
+  #difficulty-dropbox,
+  #start-game-button,
+  #name-input {
+    font-size: 90%;
+    height: 40px;
+  }
+
+  #difficulty-text {
+    font-size: 100%;
+  }
+
+  #difficulty-dropbox {
+    height: 40px;
+  }
+
 }

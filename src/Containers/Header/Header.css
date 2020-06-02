@@ -2,14 +2,14 @@
   align-items: center;
   background-color: #fff200;
   display: flex;
-  height: 200px;
+  height: 100px;
   justify-content: space-around;
   width: 100%;
 }
 
 #nav-logo {
-  height: 160px;
-  width: 190px;
+  height: 70px;
+  width: 80px;
 }
 
 #score-container {
@@ -19,12 +19,12 @@
 }
 
 #question-tally {
-  font-size: 180%;
-  margin-bottom: -15%;
+  font-size: 120%;
+  margin-bottom: -10px;
 }
 
 #score-tally {
-  font-size: 290%;
+  font-size: 120%;
 }
 
 #correct-answers {
@@ -45,9 +45,26 @@
 
 #difficulty-heading,
 #difficulty-rating {
-  font-size: 180%;
+  font-size: 120%;
 }
 
 #difficulty-rating {
   margin-top: -15%;
+}
+
+@media only screen and (max-width: 490px) {
+
+  #difficulty-heading,
+  #difficulty-rating {
+    font-size: 90%;
+  }
+
+  #score-tally {
+    font-size: 90%;
+  }
+
+  #question-tally {
+    font-size: 90%;
+  }
+
 }
