@@ -10,7 +10,7 @@ exports[`App App container/component should match the snapshot 1`] = `
     <Switch>
       <Route
         exact={true}
-        path="/intro"
+        path="/"
       >
         <Connect(Intro) />
       </Route>
@@ -29,7 +29,7 @@ exports[`App App container/component should match the snapshot 1`] = `
         <Connect(Result) />
       </Route>
       <Redirect
-        to="/intro"
+        to="/"
       />
     </Switch>
   </section>
