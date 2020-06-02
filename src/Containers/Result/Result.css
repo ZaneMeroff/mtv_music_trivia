@@ -75,4 +75,8 @@
     border-radius: 20px;
   }
 
+  .result-contianer {
+    height: 85%;
+  }
+
 }
