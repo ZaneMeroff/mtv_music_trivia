@@ -10,8 +10,7 @@ import PropTypes from 'prop-types';
 export class Intro extends Component {
   constructor(props) {
     super(props);
-    this.state =
-    {
+    this.state = {
       name: '',
       difficultyDropBox: 'easy',
       formCompleted: false
@@ -102,7 +101,7 @@ export class Intro extends Component {
       <form id='intro-container' onSubmit={this.onSubmit}>
         {this.state.formCompleted && <Redirect to={{pathname: '/round'}} />}
         <img src={ logo } id='large-logo' alt='mtv trivia logo' />
-        <h1 id='trivia-text'>T R I V I A</h1>
+        <h1 id='trivia-text'>trivia</h1>
         <h1 id='my-name'>by Zachary Nemeroff</h1>
         <input
           required
