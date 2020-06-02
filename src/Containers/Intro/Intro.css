@@ -41,8 +41,10 @@
 }
 
 #name-input {
+  height: 40px;
   padding: 0%;
   margin-top: 8%;
+  border: 5px solid #FFF;
 }
 
 #start-game-button {
@@ -53,6 +55,7 @@
   color: #ff64de;
 }
 
+#name-input:hover,
 #start-game-button:hover,
 #difficulty-dropbox:hover {
   cursor: pointer;

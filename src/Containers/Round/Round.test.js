@@ -4,6 +4,7 @@ import Response from '../../Components/Response/Response';
 import { Round, mapDispatchToProps, mapStateToProps } from './Round';
 import { shallow } from 'enzyme';
 import { correctQuestions, incorrectQuestions} from '../../actions/index';
+import { mockRandom } from 'jest-mock-random';
 
 describe('Round', () => {
 
@@ -158,16 +159,18 @@ describe('Round', () => {
   describe('displayRightOrWrong', () => {
 
     it('should return Response component with RIGHT! if rightORwrong is true', () => {
+      global.Math.random = jest.fn().mockImplementation(() => .01)
       const mockRightOrWrong = true;
       const result = wrapper.instance().displayRightOrWrong(mockRightOrWrong)
-      const expected = <Response text='RIGHT!'/>
+      const expected = <Response text='RAD!'/>
       expect(result).toEqual(expected)
     });
 
     it('should return Response component with WRONG! if rightORwrong is false', () => {
+      global.Math.random = jest.fn().mockImplementation(() => .01)
       const mockRightOrWrong = false;
       const result = wrapper.instance().displayRightOrWrong(mockRightOrWrong)
-      const expected = <Response text='WRONG!'/>
+      const expected = <Response text='bummer...'/>
       expect(result).toEqual(expected)
     });
 
