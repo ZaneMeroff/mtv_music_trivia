@@ -1,9 +1,9 @@
 #outer-div {
   align-items: center;
-  background-color: #000;
   background: center/100% url(../../assets/liquid_background.jpeg);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -16,6 +16,7 @@
   flex-direction: column;
   height: 100vh;
   width: 500px;
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 490px) {
