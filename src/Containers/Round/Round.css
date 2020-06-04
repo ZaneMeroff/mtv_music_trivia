@@ -2,20 +2,20 @@
 .question-container {
   display: flex;
   align-items: center;
-  height: 60px;
+  height: 40px;
   justify-content: center;
   margin: 2% 0% 2% 0%;
-  width: 75%;
+  width: 65%;
 }
 
 .answer-button {
   border: none;
-  font-size: 120%;
+  font-size: 110%;
 }
 
 .answer-button {
   background-color: #ff64de;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 .answer-button:hover {
@@ -26,7 +26,6 @@
 
 .question-container {
   margin-top: 30px;
-  border-radius: 50px;
   height: auto;
   width: 90%;
 }
@@ -39,17 +38,18 @@
 
 .submit-answer-button {
   background-color: #fff200;
-  border-radius: 30px;
+  border-radius: 20px;
   border: none;
-  font-size: 120%;
-  height: 60px;
+  font-size: 110%;
+  height: 40px;
   text-transform: uppercase;
-  width: 75%;
+  width: 65%;
 }
 
 .submit-answer-button:hover {
+  background-color: #ff64de;
+  color: #FFF;
   cursor: pointer;
-  border: 5px solid #ff64de;
 }
 
 .round {
