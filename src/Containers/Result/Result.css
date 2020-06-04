@@ -7,7 +7,7 @@
 }
 
 .result-text {
-  font-size: 120%;
+  font-size: 150%;
   margin: 1%;
   text-transform: uppercase;
 }
@@ -15,17 +15,18 @@
 .new-game-button {
   background-color: #fff200;
   border: none;
-  font-size: 120%;
-  height: 60px;
-  border-radius: 30px;
+  font-size: 110%;
+  height: 40px;
+  border-radius: 20px;
   margin-top: 10%;
   text-transform: uppercase;
   width: 200px;
 }
 
 .new-game-button:hover {
+  background-color: #ff64de;
+  color: #FFF;
   cursor: pointer;
-  border: 5px solid #ff64de;
 }
 
 #user-input {
@@ -46,11 +47,11 @@
   border-radius: 20px;
   height: auto;
   margin: 3%;
-  width: 85%;
+  width: 70%;
 }
 
 .missed-question-text {
-  font-size: 120%;
+  font-size: 100%;
   padding: 1%;
   text-align: center;
 }

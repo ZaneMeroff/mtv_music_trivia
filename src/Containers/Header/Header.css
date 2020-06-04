@@ -2,7 +2,7 @@
   align-items: center;
   background-color: #fff200;
   display: flex;
-  height: 12%;
+  height: 85px;
   justify-content: space-around;
   width: 100%;
 }
@@ -19,12 +19,12 @@
 }
 
 #question-tally {
-  font-size: 120%;
+  font-size: 110%;
   margin-bottom: -10px;
 }
 
 #score-tally {
-  font-size: 120%;
+  font-size: 110%;
 }
 
 #correct-answers {
@@ -45,7 +45,7 @@
 
 #difficulty-heading,
 #difficulty-rating {
-  font-size: 120%;
+  font-size: 110%;
 }
 
 #difficulty-rating {
