@@ -75,11 +75,13 @@
   .question-container {
     height: 40px;
     font-size: 90%;
+    width: 80%;
   }
 
   .submit-answer-button {
     height: 40px;
     font-size: 90%;
+    width: 80%;
   }
 
   .question-text {
