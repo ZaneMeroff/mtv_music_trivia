@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2b56c77a7d7f5ed24520ae132303ff93",
+    "revision": "877df51375baf60b176fc127a18b6ea7",
     "url": "/mtv_music_trivia/index.html"
   },
   {
-    "revision": "3217e48197f5153e1545",
-    "url": "/mtv_music_trivia/static/css/main.492f5ab1.chunk.css"
+    "revision": "c8abbe85a8b8e9b15ef4",
+    "url": "/mtv_music_trivia/static/css/main.56500b3a.chunk.css"
   },
   {
     "revision": "23ae67939b071383b5f1",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mtv_music_trivia/static/js/2.cb5deb73.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3217e48197f5153e1545",
+    "revision": "c8abbe85a8b8e9b15ef4",
     "url": "/mtv_music_trivia/static/js/main.97312059.chunk.js"
   },
   {
